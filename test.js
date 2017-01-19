@@ -116,5 +116,24 @@ tape('api: reduce right', (t) => {
     l(total)
     t.deepEqual(total, 90)
   })
-  
 })
+
+tape('api: slice', (t) => {
+  t.test('returns new but sliced array', (t) => {
+    t.plan(1)
+    const removeFirst = pl.slice(1);
+    const rest = removeFirst([2, 3, 4])
+    t.deepEqual(rest, [3, 4])
+  })
+})
+
+tape('api: some', (t) => {
+  t.test('should return true if at least one items passes predicate', (t) => {
+    t.plan(1)
+    const arr = [1, 2, 3, 4, 5];
+    const areAllAreLessThanFour = pl.some(x => x < 4)
+    const result = (areAllAreLessThanFour(arr))
+    t.equal(result, true)
+  })
+})
+
