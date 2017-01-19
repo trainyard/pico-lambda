@@ -2,7 +2,7 @@ const tape = require('tape')
 const pl = require('./index.js')
 
 var intArr = [1, 2, 3, 4, 5, 6]
-
+const l = a => console.log('!!!!!!!!!!!!!!!!!!!!!', a)
 tape('api: map', (t) => {
   t.test('applys function to items in array', (t) => {
     t.plan(1)
@@ -29,6 +29,27 @@ tape('api: concat', (t) => {
     t.deepEqual(result, [3, 2, 1])
   })
 })
+
+tape('api: every', (t) => {
+  t.test('should return false if any items do not pass predicate', (t) => {
+    t.plan(1)
+    const arr = [1, 2, 3, 4, 5];
+    const areAllAreLessThanFour = pl.every(x => x < 4)
+    const result = (areAllAreLessThanFour(arr))
+    l(result);
+    t.equal(false, result)
+  })
+
+  t.test('should return true if all items pass predicate', (t) => {
+    t.plan(1)
+    const arr = [1, 2, 3];
+    const areAllAreLessThanFour = pl.every(x => x < 4)
+    const result = (areAllAreLessThanFour(arr))
+    l(result);
+    t.equal(true, result)
+  })
+})
+
 
 // tape('Describe block', (t) => {
 //   t.test('it block', (t) => {
