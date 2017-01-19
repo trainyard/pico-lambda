@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "standard index.js | snazzy && node test.js | faucet",
+    "test:pretty": "standard index.js | snazzy && node test.js | faucet",
     "lint": "standard index.js --fix | snazzy || exit 0",
     "watch": "nodemon test.js"
   },

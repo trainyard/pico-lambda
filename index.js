@@ -1,9 +1,10 @@
-const whitelist = ['concat', 'every', 'filter ', 'find ', 'includes', 'keys', 'map', 'reduce ', 'reduceRight', 'slice', 'some']
+const whitelist = ['concat', 'every', 'filter', 'find', 'includes', 'keys', 'map', 'reduce', 'reduceRight', 'slice', 'some']
 const Box = {}
 Object
   .getOwnPropertyNames(Array.prototype)
   .filter(s => whitelist.includes(s))
   .forEach(method => {
+    console.log(method)
     Box[method] = fn => a => a[method](fn)
   })
 

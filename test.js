@@ -1,8 +1,12 @@
 const tape = require('tape')
 const pl = require('./index.js')
 
-var intArr = [1, 2, 3, 4, 5, 6]
-const l = a => console.log('!!!!!!!!!!!!!!!!!!!!!', a)
+var i = 0;
+
+const l = a => {
+  console.log('# -- log', i, '-->', a);
+  i++;
+}
 tape('api: map', (t) => {
   t.test('applys function to items in array', (t) => {
     t.plan(1)
@@ -36,8 +40,7 @@ tape('api: every', (t) => {
     const arr = [1, 2, 3, 4, 5];
     const areAllAreLessThanFour = pl.every(x => x < 4)
     const result = (areAllAreLessThanFour(arr))
-    l(result);
-    t.equal(false, result)
+    t.equal(result, false)
   })
 
   t.test('should return true if all items pass predicate', (t) => {
@@ -45,11 +48,37 @@ tape('api: every', (t) => {
     const arr = [1, 2, 3];
     const areAllAreLessThanFour = pl.every(x => x < 4)
     const result = (areAllAreLessThanFour(arr))
-    l(result);
-    t.equal(true, result)
+    t.equal(result, true)
   })
 })
 
+tape('api: filter', (t) => {
+  t.test('should return items that pass the predicate', (t) => {
+    t.plan(1)
+    const arr = [1, 2, 3, 4, 5];    
+    const numsUnderThree = pl.filter(x => x < 3)
+    const result = (numsUnderThree(arr))
+    t.deepEqual(result, [1, 2])
+  })
+})
+
+tape('api: find', (t) => {
+  t.test('should return first item that passes the predicate', (t) => {
+    t.plan(1)
+    const arr = [1, 2, 3, 4, 5];    
+    const isThree = pl.find(x => x === 3)
+    const result = (isThree(arr))
+    t.deepEqual(result, 3)
+  })
+
+  t.test('should return undefined when no item passes the predicate', (t) => {
+    t.plan(1)
+    const arr = [1, 2, 3, 4, 5];    
+    const isThree = pl.find(x => x === 8)
+    const result = (isThree(arr))
+    t.deepEqual(result, undefined)
+  })
+})
 
 // tape('Describe block', (t) => {
 //   t.test('it block', (t) => {
