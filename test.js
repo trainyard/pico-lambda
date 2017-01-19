@@ -13,12 +13,20 @@ tape('api: map', (t) => {
 })
 
 tape('api: concat', (t) => {
-  t.test('should add item to start of array', (t) => {
+  t.test('should add array of items to end of array', (t) => {
     t.plan(1)
     const arrayOne = [1, 2, 3];
     const addTwo = pl.concat([4, 5])
     const result = (addTwo(arrayOne))
     t.deepEqual(result, [1, 2, 3, 4, 5])
+  })
+
+  t.test('should add single item to end of array', (t) => {
+    t.plan(1)
+    const arrayOne = [3, 2];
+    const addOne = pl.concat(1)
+    const result = (addOne(arrayOne))
+    t.deepEqual(result, [3, 2, 1])
   })
 })
 
