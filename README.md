@@ -1,4 +1,5 @@
-# Why oh why another λ
+# Experimental please don't use yet!!!!
+
 
 # Functions
 map :: (a -> b) -> [a] -> [b] 
@@ -19,7 +20,6 @@ pipe :: ->
 
 
 # Patterns
-
 cons to add to front 
 
 concat to add to end
