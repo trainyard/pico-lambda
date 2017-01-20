@@ -40,7 +40,8 @@ Array.from(Array(n), (_, i) => x + i)
 
 # Create Docs - I have idea for wat to use 
 
-# Write blog about design
+
+
 
 # Run travis CI
 
@@ -48,8 +49,3 @@ Array.from(Array(n), (_, i) => x + i)
 
 # Investigate es5 shim if needed - :(
 
-# Consider dist folder and usage of browserify - D:
-
-# problem 1: uglify js is ES5 only
-
-# problem 2: browserify adds to size
