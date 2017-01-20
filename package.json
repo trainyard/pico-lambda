@@ -10,7 +10,7 @@
     "test": "standard src/index.js | snazzy && jasmine test/test.js",
     "test:chrome": "DEBUG=testee:* testee test/jasmine.html --browsers chrome",
     "test:remote": "browserify -e src/test.js -o src/test.bundle.js && DEBUG=testee:* testee src/unit.html -c ./testee.json",
-    "lint": "standard src/index.js --fix | snazzy || exit 0",
+    "lint": "standard src/index.js --fix | snazzy",
     "watch": "nodemon --exec 'jasmine' test/test.js",
     "docs": "jsdoc src/index.js README.md -t node_modules/jaguarjs-jsdoc -d doc"
   },
