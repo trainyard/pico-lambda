@@ -10,7 +10,7 @@
     "test": "standard src/index.js | snazzy && node src/test.js | faucet",
     "lint": "standard src/index.js --fix | snazzy || exit 0",
     "watch": "nodemon src/test.js | faucet",
-    "docs": "jsdoc src/index.js"
+    "docs": "jsdoc src/index.js README.md"
   },
   "keywords": [
     "functional",
