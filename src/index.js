@@ -13,4 +13,5 @@ p.uniq = a => [...new Set(a)]
 p.compose = (...fns) => data => fns.reduceRight((value, fn) => fn(value), data)
 p.pipe = (...fns) => data => fns.reduce((value, fn) => fn(value), data)
 
-(typeof window !== 'undefined') ? window.PicoLambda = p : module.exports = p
+if (typeof window !== 'undefined') window.PicoLambda = p
+else module.exports = p

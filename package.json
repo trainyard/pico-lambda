@@ -7,10 +7,9 @@
   "scripts": {
     "clean": "rm -rf dist ; mkdir dist ;",
     "build": "npm run clean ; node build.js src/index.js dist/pico-lambda.js",
-    "test": "standard index.js | snazzy && node test.js | faucet",
-    "test:pretty": "standard index.js | snazzy && node test.js | faucet",
-    "lint": "standard index.js --fix | snazzy || exit 0",
-    "watch": "nodemon test.js | faucet"
+    "test": "standard src/index.js | snazzy && node src/test.js | faucet",
+    "lint": "standard src/index.js --fix | snazzy || exit 0",
+    "watch": "nodemon src/test.js | faucet"
   },
   "keywords": [
     "functional",
