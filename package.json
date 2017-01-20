@@ -10,7 +10,7 @@
     "test": "standard src/index.js | snazzy && node src/test.js | faucet",
     "lint": "standard src/index.js --fix | snazzy || exit 0",
     "watch": "nodemon src/test.js | faucet",
-    "docs": "jsdoc src/index.js README.md"
+    "docs": "jsdoc src/index.js README.md -t node_modules/jaguarjs-jsdoc -d doc"
   },
   "keywords": [
     "functional",
@@ -36,10 +36,13 @@
     "condense-whitespace": "1.0.0",
     "docdown": "^0.7.2",
     "faucet": "0.0.1",
+    "install": "^0.8.4",
+    "jaguarjs-jsdoc": "^1.0.2",
     "jsdoc": "^3.4.3",
     "minifier": "0.8.0",
     "newline-remove": "1.0.2",
     "nodemon": "1.11.0",
+    "npm": "^4.1.1",
     "snazzy": "6.0.0",
     "standard": "8.6.0",
     "strip-comments": "0.4.4",
