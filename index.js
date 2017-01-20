@@ -8,7 +8,7 @@ Object
     Box[method] = fn => (a, ...args) => a[method](fn, ...args)
   })
 
-Box.cons = (val, a) => [].concat([a].unshift(val))
+Box.cons = a => b => [a, ...b]
 Box.uniq = a => [...new Set(a)]
 Box.compose = (...fns) => data => fns.reduceRight((value, fn) => fn(value), data)
 Box.pipe = (...fns) => data => fns.reduce((value, fn) => fn(value), data)

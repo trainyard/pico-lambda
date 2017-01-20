@@ -1,15 +1,15 @@
 {
   "name": "pico-lambda",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "native functional js",
   "main": "index.js",
   "scripts": {
     "test": "standard index.js | snazzy && node test.js | faucet",
     "test:pretty": "standard index.js | snazzy && node test.js | faucet",
     "lint": "standard index.js --fix | snazzy || exit 0",
-    "watch": "nodemon test.js"
+    "watch": "nodemon test.js | faucet"
   },
-  "keywords": [],
+  "keywords": ["functional", "fp", "lambda", "tiny", "pico"],
   "contributors": [
     {
       "email": "ronn.ross@gmail.com",
@@ -22,7 +22,7 @@
       "url": "https://github.com/mattmcfarland"
     }
   ],
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "faucet": "0.0.1",
     "nodemon": "1.11.0",

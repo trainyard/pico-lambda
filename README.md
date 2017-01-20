@@ -5,7 +5,7 @@
 - concat :: a -> [b] -> [c]
 - cons :: a -> [a] -> [a]
 - compose :: ((a -> b), (c -> d), ..., (e -> f)) -> (f)
-- every  :: (a -> Boolean) -> [a]
+- every  :: a -> [a] -> Boolean
 - filter :: (a -> Boolean) -> [a] -> [a]
 - find :: (a -> Boolean) -> [a] -> a | undefined
 - includes :: a -> [a] -> Boolean
