@@ -9,22 +9,25 @@
 - filter :: (a -> Boolean) -> [a] -> [a]
 - find :: (a -> Boolean) -> [a] -> a | undefined
 - includes :: a -> [a] -> Boolean
-- map :: (a -> b) -> [a] -> [b] 
+- map :: (a -> b) -> [a] -> [b]
 - pipe :: ((a -> b), (c -> d), ..., (e -> f)) -> (a)
 - reduce :: ((a, b) -> a) -> a -> [b] -> a
 - reduceRight :: ((a, b) -> a) -> a -> [b] -> a
 - slice :: Int -> [a]
 - some :: (a -> Boolean) -> [a]
-- uniq :: [a] -> [a]
-
 
 # Patterns
-cons to add to front 
+cons to add to front
 
 concat to add to end
 Head and tail
 ```js
 const [head, ...tail] = myset
+```
+
+uniq
+```js
+const uniq = a => [...new Set(a)],
 ```
 
 Pluck
@@ -38,7 +41,7 @@ Array.from(Array(n), (_, i) => x + i)
 ```
 
 
-# Create Docs - I have idea for wat to use 
+# Create Docs - I have idea for wat to use
 
 
 

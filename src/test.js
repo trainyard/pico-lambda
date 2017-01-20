@@ -11,7 +11,6 @@ const {
   reduceRight,
   slice,
   some,
-  uniq,
   compose,
   pipe
 } = require('./index.js');
