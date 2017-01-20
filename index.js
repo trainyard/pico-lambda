@@ -1,7 +1,7 @@
 const whitelist = ['concat', 'every', 'filter', 'find', 'includes', 'map', 'reduce', 'reduceRight', 'slice', 'some']
 const Box = {}
 
-console.log(Object.getOwnPropertyNames(Array.prototype));
+console.log(Object.getOwnPropertyNames(Array.prototype))
 
 Object
   .getOwnPropertyNames(Array.prototype)
