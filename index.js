@@ -12,7 +12,7 @@ Object
 
 Box.cons = (val, a) => [].concat([a].unshift(val))
 Box.uniq = a => [...new Set(a)]
-Box.compose = (...fns) => data => fns.reduce((value, fn) => fn(value), data)[0]
-Box.pipe = (...fns) => data => fns.reduceRight((value, fn) => fn(value), data)[0]
+Box.compose = (...fns) => data => fns.reduceRight((value, fn) => fn(value), data)[0]
+Box.pipe = (...fns) => data => fns.reduce((value, fn) => fn(value), data)[0]
 
 module.exports = Box
