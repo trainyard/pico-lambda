@@ -2,21 +2,20 @@
 
 
 # Functions
-map :: (a -> b) -> [a] -> [b] 
-reduce :: ->
-reduceRight :: ->
-filter :: ->
-find :: ->
-includes :: ->
-concat :: a -> [b] -> [c]
-slice :: ->
-some :: ->
-every  :: ->
-key  :: ->
-cons :: ->
-uniq :: ->
-compose :: ->
-pipe :: ->
+- concat :: a -> [b] -> [c]
+- cons :: a -> [a] -> [a]
+- compose :: ((a -> b), (c -> d), ..., (e -> f)) -> (f)
+- every  :: (a -> Boolean) -> [a]
+- filter :: (a -> Boolean) -> [a] -> [a]
+- find :: (a -> Boolean) -> [a] -> a | undefined
+- includes :: a -> [a] -> Boolean
+- map :: (a -> b) -> [a] -> [b] 
+- pipe :: ((a -> b), (c -> d), ..., (e -> f)) -> (a)
+- reduce :: ((a, b) -> a) -> a -> [b] -> a
+- reduceRight :: ((a, b) -> a) -> a -> [b] -> a
+- slice :: Int -> [a]
+- some :: (a -> Boolean) -> [a]
+- uniq :: [a] -> [a]
 
 
 # Patterns
