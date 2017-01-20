@@ -3,13 +3,22 @@
   "version": "0.1.0",
   "description": "native functional js",
   "main": "index.js",
+  "browser": "dist/pico-lambda.js",
   "scripts": {
+    "clean": "rm -rf dist ; mkdir dist ;",
+    "build": "npm run clean ; node build.js src/index.js dist/pico-lambda.js",
     "test": "standard index.js | snazzy && node test.js | faucet",
     "test:pretty": "standard index.js | snazzy && node test.js | faucet",
     "lint": "standard index.js --fix | snazzy || exit 0",
     "watch": "nodemon test.js | faucet"
   },
-  "keywords": ["functional", "fp", "lambda", "tiny", "pico"],
+  "keywords": [
+    "functional",
+    "fp",
+    "lambda",
+    "tiny",
+    "pico"
+  ],
   "contributors": [
     {
       "email": "ronn.ross@gmail.com",
@@ -24,10 +33,16 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "babel-preset-es2015": "6.22.0",
+    "babelify": "7.3.0",
+    "condense-whitespace": "1.0.0",
     "faucet": "0.0.1",
+    "minifier": "0.8.0",
+    "newline-remove": "1.0.2",
     "nodemon": "1.11.0",
     "snazzy": "6.0.0",
     "standard": "8.6.0",
+    "strip-comments": "0.4.4",
     "tape": "4.6.3"
   }
 }
