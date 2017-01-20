@@ -1,7 +1,69 @@
 # Experimental please don't use yet!!!!
 
+<p align="center">
+    λ
+  <br>
+  <b>pico-lambda</b>: 319b functional library.
+  <br>
+  [badges]
+</p>
 
-# Functions
+## why pico-lambda
+- **Pico:** weighs less than 319 bytes gzipped
+- **Useful:** takes many native JavaScript array method and makes them composable
+- **Familiar:** same names just curried and composable [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- **Functional:** methods don't rely on `this`
+- **Sized just right:** if you need a bit more checkout [pico-nano](https://github.com/trainyard/pico-nano)
+
+
+> Pico-lambda was made for any JavaScript runtime. It has no dependencies and supports IE9+.
+
+* * *
+
+## Usage
+
+After installing via `npm install --save mitt`:
+
+```js
+const {
+  concat,
+  cons,
+  every,
+  filter,
+  find,
+  includes,
+  map,
+  reduce,
+  reduceRight,
+  slice,
+  some,
+  compose,
+  pipe
+} = require('./index.js');
+
+// concat (native JS)
+const arrayOne = [1, 2, 3];
+const addTwo = concat([4, 5])
+const result = arrayOne.concat(addTwo)
+
+//concat (pico)
+const arrayOne = [1, 2, 3];
+const addTwo = concat([4, 5])
+const result = (addTwo(arrayOne))
+
+// This difference matters because now we can compose
+   compose(
+      reduce((acc, val) => val + acc),
+      map(x => x * 2),
+      filter(x => x > 5),
+      concat([6, 7, 8]),
+      cons(0),
+    )([1, 2, 3, 4, 5])
+```
+
+* * *
+
+# Api
 - concat :: a -> [b] -> [c]
 - cons :: a -> [a] -> [a]
 - compose :: ((a -> b), (c -> d), ..., (e -> f)) -> (f)
@@ -17,9 +79,8 @@
 - some :: (a -> Boolean) -> [a]
 
 # Patterns
-cons to add to front
+Didn't find something you needed checkout out a few easy patterns
 
-concat to add to end
 Head and tail
 ```js
 const [head, ...tail] = myset
@@ -30,21 +91,13 @@ uniq
 const uniq = a => [...new Set(a)],
 ```
 
-Pluck
+Pluck/Pick
 ```js
 array.map(value => value[propertyName])
 ```
 
-Create a rand
-```js
-Array.from(Array(n), (_, i) => x + i)
-```
-
 
 # Create Docs - I have idea for wat to use
-
-
-
 
 # Run travis CI
 
