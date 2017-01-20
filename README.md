@@ -16,13 +16,13 @@
 - **Sized just right:** if you need a bit more checkout [pico-nano](https://github.com/trainyard/pico-nano)
 
 
-> Pico-lambda was made for any JavaScript runtime. It has no dependencies and supports IE9+.
+> Pico-lambda was made for the ES2015 Javascript Runtime, and has no dependencies.
 
 * * *
 
 ## Usage
 
-After installing via `npm install --save mitt`:
+After installing via `npm install`:
 
 ```js
 const {
@@ -39,7 +39,7 @@ const {
   some,
   compose,
   pipe
-} = require('./index.js');
+} = require();
 
 // concat (native JS)
 const arrayOne = [1, 2, 3];
