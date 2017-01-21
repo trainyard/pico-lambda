@@ -6,6 +6,7 @@ const {
   filter,
   find,
   includes,
+  join,
   map,
   reduce,
   reduceRight,
@@ -101,6 +102,16 @@ tape('api: includes', (t) => {
     const isThree = includes(8)
     const result = (isThree(arr))
     t.deepEqual(result, false)
+  })
+})
+
+tape('api: join', (t) => {
+  t.test('should return a string with each item separated with character passed in', (t) => {
+    t.plan(1)
+    const arr = [1, 2, 3, 4, 5];
+    const separateByDash = join('-')
+    const result = (separateByDash(arr))
+    t.deepEqual(result, '1-2-3-4-5')
   })
 })
 

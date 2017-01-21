@@ -1,16 +1,16 @@
 
 const p = Object
   .getOwnPropertyNames(Array.prototype)
-  .filter(s => ['concat', 'every', 'filter', 'find', 'includes', 'map', 'reduce', 'reduceRight', 'slice', 'some'].includes(s))
+  .filter(s => ['concat', 'every', 'filter', 'find', 'includes', 'join', 'map', 'reduce', 'reduceRight', 'slice', 'some'].includes(s))
   .reduce((p, method) => {
     p[method] = fn => (a, ...args) => a[method](fn, ...args)
     return p
   }, {
-
+    
     cons: a => b => [a, ...b],
-
+    
     compose: (...fns) => data => fns.reduceRight((value, fn) => fn(value), data),
-
+    
     pipe: (...fns) => data => fns.reduce((value, fn) => fn(value), data)
   })
 

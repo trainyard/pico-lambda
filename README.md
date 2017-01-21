@@ -71,6 +71,7 @@ const result = (addTwo(arrayOne))
 - filter :: (a -> Boolean) -> [a] -> [a]
 - find :: (a -> Boolean) -> [a] -> a | undefined
 - includes :: a -> [a] -> Boolean
+- join :: a -> [a] -> [a]
 - map :: (a -> b) -> [a] -> [b]
 - pipe :: ((a -> b), (c -> d), ..., (e -> f)) -> (a)
 - reduce :: ((a, b) -> a) -> a -> [b] -> a
@@ -78,6 +79,26 @@ const result = (addTwo(arrayOne))
 - slice :: Int -> [a]
 - some :: (a -> Boolean) -> [a]
 
+## Where is ...?
+*native*
+- `length` Doesn't curry well. Try `map(x => x.length)`,
+'toString',
+'toLocaleString',
+- `pop` mutates, but we might need something to replace.
+- `push` push mutates the array by reference. It also returns the length of the arrya *strange*. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/), but we just use concat or cons
+'reverse',
+'shift',
+'unshift',
+'splice',
+'sort',
+'forEach',
+'indexOf',
+'lastIndexOf',
+'copyWithin',
+'findIndex',
+'fill',
+'entries',
+'keys'
 # Patterns
 Didn't find something you needed checkout out a few easy patterns
 
