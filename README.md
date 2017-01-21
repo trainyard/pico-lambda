@@ -70,6 +70,7 @@ const result = (addTwo(arrayOne))
 - every  :: a -> [a] -> Boolean
 - filter :: (a -> Boolean) -> [a] -> [a]
 - find :: (a -> Boolean) -> [a] -> a | undefined
+- findIndex :: (a -> Boolean) -> a | -1
 - includes :: a -> [a] -> Boolean
 - join :: a -> [a] -> [a]
 - map :: (a -> b) -> [a] -> [b]
@@ -86,16 +87,15 @@ const result = (addTwo(arrayOne))
 'toLocaleString',
 - `pop` mutates, but we might need something to replace.
 - `push` push mutates the array by reference. It also returns the length of the arrya *strange*. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/), but we just use concat or cons
-'reverse',
+- `reverse` We felt this was better served with a pattern. Checkout below. 
 'shift',
-'unshift',
+- `unshift` Use the cons
 'splice',
 'sort',
 'forEach',
 'indexOf',
 'lastIndexOf',
 'copyWithin',
-'findIndex',
 'fill',
 'entries',
 'keys'
@@ -115,6 +115,11 @@ const uniq = a => [...new Set(a)],
 Pluck/Pick
 ```js
 array.map(value => value[propertyName])
+```
+
+reverse 
+```js
+[ ...arr ].reverse()
 ```
 
 

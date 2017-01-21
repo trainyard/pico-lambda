@@ -1,4 +1,4 @@
-const { concat, cons, every, filter, find, includes, join, map, reduce, reduceRight, slice, some, compose, pipe } = init().PicoLambda
+const { concat, cons, every, filter, find, findIndex, includes, join, map, reduce, reduceRight, slice, some, compose, pipe } = init().PicoLambda
 const { describe, it } = init()
 
 function init () {
@@ -96,6 +96,22 @@ describe('api: find', () => {
   })
 })
 
+describe('api: findIndex', () => {
+  it('should return index of first item that passes the predicate', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const gtThree = findIndex(x => x > 3)
+    const result = gtThree(arr)
+    expect(result).toEqual(3)
+  })
+
+  it('should return -1 when no item passes the predicate', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const gtThree = findIndex(x => x > 80)
+    const result = gtThree(arr)
+    expect(result).toEqual(-1)
+  })
+})
+
 describe('api: includes', () => {
   it('should return true when an item is found in array', () => {
     const arr = [1, 2, 3, 4, 5]
@@ -112,14 +128,14 @@ describe('api: includes', () => {
   })
 })
 
-describe('api: join', () => {
-  it('should return a string with each item separated with character passed in', (t) => {
-    const arr = [1, 2, 3, 4, 5]
-    const separateByDash = join('-')
-    const result = (separateByDash(arr))
-    expect(result).toEqual('1-2-3-4-5')
-  })
-})
+// describe('api: join', () => {
+//   it('should return a string with each item separated with character passed in', (t) => {
+//     const arr = [1, 2, 3, 4, 5]
+//     const separateByDash = join('-')
+//     const result = (separateByDash(arr))
+//     expect(result).toEqual('1-2-3-4-5')
+//   })
+// })
 
 describe('api: map', () => {
   it('applys function to items in array', () => {
