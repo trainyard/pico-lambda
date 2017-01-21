@@ -80,25 +80,25 @@ const result = (addTwo(arrayOne))
 - slice :: Int -> [a]
 - some :: (a -> Boolean) -> [a]
 
-## Where is ...?
+## Where are ...?
 *native*
-- `length` Doesn't curry well. Try `map(x => x.length)`,
-'toString',
-'toLocaleString',
-- `pop` mutates, but we might need something to replace.
-- `push` push mutates the array by reference. It also returns the length of the arrya *strange*. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/), but we just use concat or cons
+- `length` - Reviewing.
+- `toString` - Reviewing.
+- `toLocaleString` - Reviewing.
+- `pop` - Mutates! But we are looking for a replacement.
+- `push` - Mutates! Change the array by reference. It also returns the length of the array *strange*. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/), but we just use concat or cons.
 - `reverse` We felt this was better served with a pattern. Checkout below. 
-'shift',
-- `unshift` Use the cons
-'splice',
-'sort',
-'forEach',
-'indexOf',
-'lastIndexOf',
-'copyWithin',
-'fill',
-'entries',
-'keys'
+- `shift` - Mutates! Looking for a replacement.
+- `unshift` Use the cons.
+- `splice` Use slice.
+- `sort` Mutates! Might add a sortby
+- `forEach` Returns `undefined`. Use `map` or `reduce`.
+- `indexOf`, Use includes.
+- `lastIndexOf`, Use includes.
+- `copyWithin` Mutates! Use `composition` or `pipe`
+- `fill` Mutates! It mutates everything! So we left it out.
+- `entries`- Reviewing.
+- `keys` - Reviewing.
 # Patterns
 Didn't find something you needed checkout out a few easy patterns
 
