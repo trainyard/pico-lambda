@@ -9,12 +9,11 @@
 </p>
 
 ## why pico-lambda
-- **Pico:** weighs less than 319 bytes gzipped
-- **Useful:** takes many native JavaScript array method and makes them composable
-- **Familiar:** same names just curried and composable [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
-- **Functional:** methods don't rely on `this`
-- **Sized just right:** if you need a bit more checkout [pico-nano](https://github.com/trainyard/pico-nano)
-
+- **Pico:** weighs less than 319 bytes gzipped.
+- **Useful:** takes many native JavaScript array method and makes them composable.
+- **Familiar:** same names just curried and composable [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
+- **Functional:** functions are curried.
+- **Sized just right:** if you need a bit more checkout [pico-nano](https://github.com/trainyard/pico-nano).
 
 > Pico-lambda was made for the ES2015 Javascript Runtime, and has no dependencies.
 
@@ -82,23 +81,23 @@ const result = (addTwo(arrayOne))
 
 ## Where are ...?
 *native*
-- `length` - Reviewing.
-- `toString` - Reviewing.
-- `toLocaleString` - Reviewing.
 - `pop` - Mutates! But we are looking for a replacement.
 - `push` - Mutates! Change the array by reference. It also returns the length of the array *strange*. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/), but we just use concat or cons.
-- `reverse` We felt this was better served with a pattern. Checkout below. 
+- `reverse` - We felt this was better served with a pattern. Checkout below. 
 - `shift` - Mutates! Looking for a replacement.
-- `unshift` Use the cons.
-- `splice` Use slice.
-- `sort` Mutates! Might add a sortby
-- `forEach` Returns `undefined`. Use `map` or `reduce`.
-- `indexOf`, Use includes.
-- `lastIndexOf`, Use includes.
-- `copyWithin` Mutates! Use `composition` or `pipe`
-- `fill` Mutates! It mutates everything! So we left it out.
-- `entries`- Reviewing.
-- `keys` - Reviewing.
+- `unshift` - Use the cons.
+- `splice` - Use slice.
+- `sort` - Mutates! Might add a sortby.
+- `forEach` - Returns `undefined`. Use `map` or `reduce`.
+- `indexOf` - Use includes.
+- `lastIndexOf` - Use includes.
+- `copyWithin` - Mutates! Use `composition` or `pipe`.
+- `fill` - Mutates! It mutates everything! So we left it out.
+- `toString` - Just `map(x => x.toString)`.
+- `length` - Just `map(x => x.length)`.
+- `entries`- Just `map(x => x.entries)`.
+- `keys` - Just `map(x => x.keys)`.
+
 # Patterns
 Didn't find something you needed checkout out a few easy patterns
 
@@ -121,13 +120,3 @@ reverse
 ```js
 [ ...arr ].reverse()
 ```
-
-
-# Create Docs - I have idea for wat to use
-
-# Run travis CI
-
-# Check out browserling or comparitive to generate comprehensive compatibility list
-
-# Investigate es5 shim if needed - :(
-
