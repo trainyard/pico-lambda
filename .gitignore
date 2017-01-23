@@ -1,3 +1,4 @@
 node_modules
 *.log
 scratch.js
+.DS_Store

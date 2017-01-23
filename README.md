@@ -51,13 +51,13 @@ const addTwo = concat([4, 5])
 const result = (addTwo(arrayOne))
 
 // This difference matters because now we can compose
-   compose(
-      reduce((acc, val) => val + acc),
-      map(x => x * 2),
-      filter(x => x > 5),
-      concat([6, 7, 8]),
-      cons(0),
-    )([1, 2, 3, 4, 5])
+compose(
+  reduce((acc, val) => val + acc),
+  map(x => x * 2),
+  filter(x => x > 5),
+  concat([6, 7, 8]),
+  cons(0),
+)([1, 2, 3, 4, 5])
 ```
 
 * * *

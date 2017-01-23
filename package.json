@@ -12,7 +12,7 @@
     "test:remote": "DEBUG=testee:* testee src/unit.html -c ./testee.remote.json",
     "lint": "standard src/index.js --fix | snazzy",
     "watch": "nodemon --exec 'jasmine' test/test.js",
-    "docs": "jsdoc src/index.js README.md -t node_modules/jaguarjs-jsdoc -d doc"
+    "docs": "jsdoc src/index.js README.md -t node_modules/jaguarjs-jsdoc -d docs"
   },
   "keywords": [
     "functional",
