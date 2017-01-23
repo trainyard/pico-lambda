@@ -88,7 +88,6 @@ compose(
 *native*
 - `pop` - Mutates! But we are looking for a replacement.
 - `push` - Mutates! Change the array by reference. It also returns the length of the array *strange*. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/), but we just use concat or cons.
-- `reverse` - We felt this was better served with a pattern. Checkout below. 
 - `shift` - Mutates! Looking for a replacement.
 - `unshift` - Use the cons.
 - `splice` - Use slice.
@@ -98,10 +97,13 @@ compose(
 - `lastIndexOf` - Use includes.
 - `copyWithin` - Mutates! Use `composition` or `pipe`.
 - `fill` - Mutates! It mutates everything! So we left it out.
+- `reverse` - We didn't felt this was better served with a pattern. Checkout below. 
 - `toString` - Just `map(x => x.toString)`.
 - `length` - Just `map(x => x.length)`.
 - `entries`- Just `map(x => x.entries)`.
-- `keys` - Just `map(x => x.keys)`.
+- `keys` - Use `Object.keys`.
+
+If you don't agree with anything above that's great. Just log and issue so we can discuss.
 
 # Patterns
 Didn't find something you needed checkout out a few easy patterns
@@ -121,7 +123,29 @@ Pluck/Pick
 array.map(value => value[propertyName])
 ```
 
+### Possible candidates to add.
+
 reverse 
 ```js
-[ ...arr ].reverse()
+const reverse = a => [ ...a ].reverse()
+```
+
+length
+```js 
+const length = i => i.length
+```
+
+toString
+```js
+const toString = a => join(',')
+```
+
+pop 
+```js
+const pop = a => a.slice(0, -1)
+```
+
+shift 
+```
+const shift = a => slice(1)
 ```
