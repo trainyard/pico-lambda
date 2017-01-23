@@ -1,12 +1,22 @@
-# Experimental please don't use yet!!!!
+<h1 align="center">pico-lambda</h1>
 
-<p align="center">
-    λ
-  <br>
-  <b>pico-lambda</b>: 319b functional library.
-  <br>
-  [badges]
-</p>
+<div align="center">
+  λ
+</div>
+<div align="center">
+  <strong>Fun functional programming</strong>
+</div>
+<div align="center">
+  A <code>319b</code> functional library based of native array methods
+</div>
+
+<div align="center">
+  <!-- Stability -->
+  <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
+    <img src="https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square"
+      alt="API stability" />
+  </a>
+</div>
 
 ## why pico-lambda
 - **Pico:** weighs less than 319 bytes gzipped.
@@ -19,7 +29,7 @@
 
 * * *
 
-## Usage
+## Example
 
 After installing via `npm install`:
 
@@ -38,19 +48,14 @@ const {
   some,
   compose,
   pipe
-} = require();
+} = require('./pico-lambda')
 
-// concat (native JS)
+//concat
 const arrayOne = [1, 2, 3];
 const addTwo = concat([4, 5])
-const result = arrayOne.concat(addTwo)
+const result = addTwo(arrayOne)
 
-//concat (pico)
-const arrayOne = [1, 2, 3];
-const addTwo = concat([4, 5])
-const result = (addTwo(arrayOne))
-
-// This difference matters because now we can compose
+// We can compose instead of chaining
 compose(
   reduce((acc, val) => val + acc),
   map(x => x * 2),
