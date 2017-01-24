@@ -8,12 +8,17 @@ const p = Object
   }, {
     /**
      * Adds item to front of list.
-     * cons :: a -> [a] -> [a]
+     * unshift :: a -> [a] -> [a]
      * @constructor
      * @param {any} item - Item to be added to front of list.
      * @param {array} Array - Array that item will be prepended to.
      */
-    cons: a => b => [a, ...b],
+    unshift: a => b => [a, ...b],
+    reverse: a => [...a].reverse(),
+    length: a => a.length,
+    toString: a => a.toString(),
+    pop: a => a.slice(0, -1),
+    shift: a => a.slice(1),
     /**
      * Composes several pure functions.
      * compose :: ((a -> b), (c -> d), ..., (e -> f)) -> (f)

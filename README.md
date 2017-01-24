@@ -7,7 +7,7 @@
   <strong>Fun functional programming</strong>
 </div>
 <div align="center">
-  A <code>319b</code> functional library based of native array methods
+  A <code>406b</code> functional library based of native array methods
 </div>
 
 <div align="center">
@@ -19,7 +19,7 @@
 </div>
 
 ## why pico-lambda
-- **Pico:** weighs less than 319 bytes gzipped.
+- **Pico:** weighs less than 406 bytes gzipped.
 - **Useful:** takes many native JavaScript array method and makes them composable.
 - **Familiar:** same names just curried and composable [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
 - **Functional:** functions are curried.
@@ -68,8 +68,12 @@ compose(
 * * *
 
 # Api
-- concat :: a -> [b] -> [c]
-- cons :: a -> [a] -> [a]
+- concat : Concatinates two arrays 
+  `[a] -> [b] -> [c]`
+  ```js
+    concat([4, 5])([1,2,3])
+  ```
+  
 - compose :: ((a -> b), (c -> d), ..., (e -> f)) -> (f)
 - every  :: a -> [a] -> Boolean
 - filter :: (a -> Boolean) -> [a] -> [a]
@@ -77,19 +81,22 @@ compose(
 - findIndex :: (a -> Boolean) -> a | -1
 - includes :: a -> [a] -> Boolean
 - join :: a -> [a] -> [a]
+- length :: Array -> Number 
 - map :: (a -> b) -> [a] -> [b]
 - pipe :: ((a -> b), (c -> d), ..., (e -> f)) -> (a)
+- pop :: Array -> Array
 - reduce :: ((a, b) -> a) -> a -> [b] -> a
 - reduceRight :: ((a, b) -> a) -> a -> [b] -> a
-- slice :: Int -> [a]
+- reverse ::  Array -> Array
+- shift :: Array -> 
+- slice :: Number -> [a]
 - some :: (a -> Boolean) -> [a]
+- toString :: Array -> String
+- unshift :: a -> [a] -> [a]
 
 ## Where are ...?
 *native*
-- `pop` - Mutates! But we are looking for a replacement.
-- `push` - Mutates! Change the array by reference. It also returns the length of the array *strange*. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/), but we just use concat or cons.
-- `shift` - Mutates! Looking for a replacement.
-- `unshift` - Use the cons.
+- `push` - Mutates! Change the array by reference. It also returns the length of the array *strange*. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/), but we just use concat or unshift.
 - `splice` - Use slice.
 - `sort` - Mutates! Might add a sortby.
 - `forEach` - Returns `undefined`. Use `map` or `reduce`.
@@ -97,9 +104,6 @@ compose(
 - `lastIndexOf` - Use includes.
 - `copyWithin` - Mutates! Use `composition` or `pipe`.
 - `fill` - Mutates! It mutates everything! So we left it out.
-- `reverse` - We didn't felt this was better served with a pattern. Checkout below. 
-- `toString` - Just `map(x => x.toString)`.
-- `length` - Just `map(x => x.length)`.
 - `entries`- Just `map(x => x.entries)`.
 - `keys` - Use `Object.keys`.
 
@@ -115,37 +119,10 @@ const [head, ...tail] = myset
 
 uniq
 ```js
-const uniq = a => [...new Set(a)],
+const uniq = a => [...new Set(a)]
 ```
 
 Pluck/Pick
 ```js
 array.map(value => value[propertyName])
-```
-
-### Possible candidates to add.
-
-reverse 
-```js
-const reverse = a => [ ...a ].reverse()
-```
-
-length
-```js 
-const length = i => i.length
-```
-
-toString
-```js
-const toString = a => join(',')
-```
-
-pop 
-```js
-const pop = a => a.slice(0, -1)
-```
-
-shift 
-```
-const shift = a => slice(1)
 ```

@@ -1,4 +1,4 @@
-const { concat, cons, every, filter, find, findIndex, includes, join, map, reduce, reduceRight, slice, some, compose, pipe } = init().PicoLambda
+const { concat, every, filter, find, findIndex, includes, join, length, map, pop, reduce, reduceRight, reverse, shift, slice, some, toString, compose, pipe, unshift } = init().PicoLambda
 const { describe, it } = init()
 
 function init () {
@@ -44,14 +44,6 @@ describe('api: concat', () => {
     const addOne = concat(1)
     const result = (addOne(arrayOne))
     expect(result).toEqual([3, 2, 1])
-  })
-})
-
-describe('api: cons', () => {
-  it('should add single item to front of array', () => {
-    const addOne = cons(1)
-    const result = addOne([2, 3])
-    expect(result).toEqual([1, 2, 3])
   })
 })
 
@@ -178,6 +170,57 @@ describe('api: some', () => {
   })
 })
 
+/*////////////// Maybe ///////////*/
+describe('api: reverse', () => {
+  it('should return array reversed', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const result = reverse(arr)
+    expect(result).toEqual([5,4,3,2,1])
+  })
+})
+
+describe('api: length', () => {
+  it('should return length of array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const result = length(arr)
+    expect(result).toEqual(5)
+  })
+})
+
+describe('api: toString', () => {
+  it('should return string representation of array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const result = toString(arr)
+    expect(result).toEqual("1,2,3,4,5")
+  })
+})
+
+describe('api: pop', () => {
+  it('should remove last element from array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const result = pop(arr)
+    expect(result).toEqual([1, 2, 3, 4])
+  })
+})
+
+describe('api: shift', () => {
+  it('should remove first element from array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const result = shift(arr)
+    expect(result).toEqual([2, 3, 4, 5])
+  })
+})
+
+describe('api: unshift', () => {
+  it('should add single item to front of array', () => {
+    const addOne = unshift(1)
+    const result = addOne([2, 3])
+    expect(result).toEqual([1, 2, 3])
+  })
+})
+
+/*/////////////// end maybe //////////*/
+
 describe('api: compose', () => {
   const is = a => b => {
     expect(a).toEqual(b)
@@ -205,7 +248,7 @@ describe('api: compose', () => {
       is([0, 1, 2, 3, 4, 5, 6, 7, 8]),
       concat([6, 7, 8]),
       is([0, 1, 2, 3, 4, 5]),
-      cons(0),
+      unshift(0),
       is([1, 2, 3, 4, 5])
     )([1, 2, 3, 4, 5])
   })
@@ -230,7 +273,7 @@ describe('api: pipe', () => {
   it('pipe ( cons -> concat -> filter -> map -> reduce )', () => {
     pipe(
       is([1, 2, 3, 4, 5]),
-      cons(0),
+      unshift(0),
       is([0, 1, 2, 3, 4, 5]),
       concat([6, 7, 8]),
       is([0, 1, 2, 3, 4, 5, 6, 7, 8]),

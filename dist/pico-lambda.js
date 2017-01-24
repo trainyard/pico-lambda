@@ -7,7 +7,12 @@ const p = Object
     return p
   }, {
     
-    cons: a => b => [a, ...b],
+    unshift: a => b => [a, ...b],
+    reverse: a => [...a].reverse(),
+    length: a => a.length,
+    toString: a => a.toString(),
+    pop: a => a.slice(0, -1),
+    shift: a => a.slice(1),
     
     compose: (...fns) => data => fns.reduceRight((value, fn) => fn(value), data),
     
