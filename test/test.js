@@ -120,14 +120,14 @@ describe('api: includes', () => {
   })
 })
 
-// describe('api: join', () => {
-//   it('should return a string with each item separated with character passed in', (t) => {
-//     const arr = [1, 2, 3, 4, 5]
-//     const separateByDash = join('-')
-//     const result = (separateByDash(arr))
-//     expect(result).toEqual('1-2-3-4-5')
-//   })
-// })
+describe('api: join', () => {
+  it('should return a string with each item separated with character passed in', (t) => {
+    const arr = [1, 2, 3, 4, 5]
+    const separateByDash = join('-')
+    const result = (separateByDash(arr))
+    expect(result).toEqual('1-2-3-4-5')
+  })
+})
 
 describe('api: map', () => {
   it('applys function to items in array', () => {
