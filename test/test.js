@@ -1,9 +1,9 @@
-const { concat, every, filter, find, findIndex, includes, join, length, map, pop, reduce, reduceRight, reverse, shift, slice, some, toString, compose, pipe, unshift } = init().PicoLambda
+const { concat, every, filter, find, findIndex, includes, join, length, map, pop, reduce, reduceRight, reverse, shift, slice, some, sort, toString, compose, pipe, unshift } = init().PicoLambda
 const { describe, it } = init()
 
-function init () {
+function init() {
 
-  if(typeof window === 'undefined') {
+  if (typeof window === 'undefined') {
     const SpecReporter = require('jasmine-spec-reporter').SpecReporter
 
     jasmine.getEnv().clearReporters()               // remove default reporter logs
@@ -16,11 +16,11 @@ function init () {
 
   if (typeof window !== 'undefined') {
     const { PicoLambda, describe, it } = window
-    return { PicoLambda, describe, it}
+    return { PicoLambda, describe, it }
   } else {
     const PicoLambda = require('../dist/pico-lambda')
     const { describe, it } = global
-    return { PicoLambda, describe, it}
+    return { PicoLambda, describe, it }
   }
 }
 
@@ -175,7 +175,7 @@ describe('api: reverse', () => {
   it('should return array reversed', () => {
     const arr = [1, 2, 3, 4, 5]
     const result = reverse(arr)
-    expect(result).toEqual([5,4,3,2,1])
+    expect(result).toEqual([5, 4, 3, 2, 1])
   })
 })
 
@@ -216,6 +216,17 @@ describe('api: unshift', () => {
     const addOne = unshift(1)
     const result = addOne([2, 3])
     expect(result).toEqual([1, 2, 3])
+  })
+})
+
+describe('api: sort', () => {
+  it('should sort array based on predicate', () => {
+    const arr = [4, 6, 13]
+    let compare = (a, b) => a - b;
+
+    const sortBy = sort(compare)
+    const result = sortBy(arr)
+    expect(arr).toEqual(arr)
   })
 })
 

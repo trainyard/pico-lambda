@@ -91,14 +91,15 @@ compose(
 - shift :: Array -> 
 - slice :: Number -> [a]
 - some :: (a -> Boolean) -> [a]
+- sort :: 
 - toString :: Array -> String
 - unshift :: a -> [a] -> [a]
 
 ## Where are ...?
 *native*
-- `push` - Mutates! Change the array by reference. It also returns the length of the array *strange*. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/), but we just use concat or unshift.
+- `push` - Mutates! It also returns the length of the array *strange*. Use concat or unshift. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/).
 - `splice` - Use slice.
-- `sort` - Mutates! Might add a sortby.
+-- `sort` - Mutates! Might add a sortby.
 - `forEach` - Returns `undefined`. Use `map` or `reduce`.
 - `indexOf` - Use includes.
 - `lastIndexOf` - Use includes.

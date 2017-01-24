@@ -19,6 +19,7 @@ const p = Object
     toString: a => a.toString(),
     pop: a => a.slice(0, -1),
     shift: a => a.slice(1),
+    sort: comp => a => [...a].sort(comp),
     /**
      * Composes several pure functions.
      * compose :: ((a -> b), (c -> d), ..., (e -> f)) -> (f)

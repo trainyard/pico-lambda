@@ -13,6 +13,7 @@ const p = Object
     toString: a => a.toString(),
     pop: a => a.slice(0, -1),
     shift: a => a.slice(1),
+    sort: comp => a => [...a].sort(comp),
     
     compose: (...fns) => data => fns.reduceRight((value, fn) => fn(value), data),
     
