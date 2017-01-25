@@ -108,25 +108,24 @@ describe('api: includes', () => {
   it('should return true when an item is found in array', () => {
     const arr = [1, 2, 3, 4, 5]
     const isThree = includes(3)
-    const result = (isThree(arr))
+    const result = isThree(arr)
     expect(result).toEqual(true)
   })
 
   it('should return false when an item is not found in array', () => {
     const arr = [1, 2, 3, 4, 5]
     const isThree = includes(8)
-    const result = (isThree(arr))
+    const result = isThree(arr)
     expect(result).toEqual(false)
   })
 })
 
 describe('api: join', () => {
-  it('should return a string with each item separated with character passed in', (done) => {
+  it('should return a string with each item separated with character passed in', () => {
     const arr = [1, 2, 3, 4, 5]
     const separateByDash = join('-')
-    const result = (separateByDash(arr))
+    const result = separateByDash(arr)
     expect(result).toEqual('1-2-3-4-5')
-    done()
   })
 })
 
