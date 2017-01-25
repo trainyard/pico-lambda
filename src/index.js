@@ -15,8 +15,6 @@ const p = Object
      */
     unshift: a => b => [a, ...b],
     reverse: a => [...a].reverse(),
-    length: a => a.length,
-    toString: a => a.toString(),
     pop: a => a.slice(0, -1),
     shift: a => a.slice(1),
     sort: comp => a => [...a].sort(comp),
