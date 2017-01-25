@@ -13,10 +13,13 @@ const p = Object
      * @param {any} item - Item to be added to front of list.
      * @param {array} Array - Array that item will be prepended to.
      */
-    unshift: a => b => [a, ...b],
-    reverse: a => [...a].reverse(),
+    push: a => b => [].concat(b, [a]),
     pop: a => a.slice(0, -1),
     shift: a => a.slice(1),
+    unshift: a => b => [a, ...b],
+    reverse: a => [...a].reverse(),
+    length: a => a.length,
+    toString: a => a.toString(),
     sort: comp => a => [...a].sort(comp),
     /**
      * Composes several pure functions.

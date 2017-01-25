@@ -1,4 +1,4 @@
-const { concat, every, filter, find, findIndex, includes, join, map, pop, reduce, reduceRight, reverse, shift, slice, some, sort, compose, pipe, unshift } = init().PicoLambda
+const { concat, every, filter, find, findIndex, includes, join, map, pop, push, length, toString, reduce, reduceRight, reverse, shift, slice, some, sort, compose, pipe, unshift } = init().PicoLambda
 const { describe, it } = init()
 
 function init() {
@@ -176,6 +176,30 @@ describe('api: reverse', () => {
     const arr = [1, 2, 3, 4, 5]
     const result = reverse(arr)
     expect(result).toEqual([5, 4, 3, 2, 1])
+  })
+})
+
+describe('api: length', () => {
+  it('should return length of array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const result = length(arr)
+    expect(result).toEqual(5)
+  })
+})
+
+describe('api: toString', () => {
+  it('should return string representation of array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const result = toString(arr)
+    expect(result).toEqual("1,2,3,4,5")
+  })
+})
+
+describe('api: push', () => {
+  it('should add element to end of array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const result = push(6)(arr)
+    expect(result).toEqual([1, 2, 3, 4, 5, 6])
   })
 })
 
