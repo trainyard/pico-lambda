@@ -204,13 +204,16 @@ describe('api: unshift', () => {
 })
 
 describe('api: sort', () => {
-  it('should sort array based on predicate', () => {
-    const arr = [4, 6, 13]
-    let compare = (a, b) => a - b;
+  it('should sort array based on comparator', () => {
+    var arr = [20, 1, 3, 4, 2]
+    const numComp = (a, b) => {
+      return (a < b) ? -1 :
+        (a === b) ? 0 : 1
+    }
 
-    const sortBy = sort(compare)
+    const sortBy = sort(numComp)
     const result = sortBy(arr)
-    expect(arr).toEqual(arr)
+    expect(result).toEqual([1, 2, 3, 4, 20])
   })
 })
 
