@@ -6,21 +6,16 @@ const p = Object
     p[method] = fn => (a, ...args) => a[method](fn, ...args)
     return p
   }, {
-    /**
-     * Adds item to front of list.
-     * unshift :: a -> [a] -> [a]
-     * @constructor
-     * @param {any} item - Item to be added to front of list.
-     * @param {array} Array - Array that item will be prepended to.
-     */
     push: a => b => [].concat(b, [a]),
     pop: a => a.slice(0, -1),
     shift: a => a.slice(1),
+    splice: (start, deleteCount) => (...items) => arr => [...arr.slice(0, start), ...items, ...arr.slice(start + deleteCount)],
     unshift: a => b => [a, ...b],
     reverse: a => [...a].reverse(),
     length: a => a.length,
     toString: a => a.toString(),
     sort: comp => a => [...a].sort(comp),
+    indexOf: p => a => a.findIndex(x => x === p),
     /**
      * Composes several pure functions.
      * compose :: ((a -> b), (c -> d), ..., (e -> f)) -> (f)

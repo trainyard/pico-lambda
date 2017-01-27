@@ -95,11 +95,9 @@ compose(
 
 ## Where are ...?
 *native*
-- `push` - Mutates! It also returns the length of the array *strange*. Use concat or unshift. [Here is an article on the differences](http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/).
-- `splice` - Use slice.
--- `sort` - Mutates! Might add a sortby.
+- `splice` - untested implementation.
 - `forEach` - Returns `undefined`. Use `map` or `reduce`.
-- `indexOf` - Use includes.
+- `indexOf` - untested implementation.
 - `lastIndexOf` - Use includes.
 - `length` - Not that easy to compose just use `reduce(cnt => cnt + 1, 0)`
 - `copyWithin` - Mutates! Use `composition` or `pipe`.
