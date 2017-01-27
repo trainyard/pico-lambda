@@ -17,7 +17,7 @@ const p = Object
     sort: comp => a => [...a].sort(comp),
     indexOf: p => a => a.findIndex(x => x === p),
     lastIndexOf: p => a => a.lastIndexOf(p),
-    fill: (...p) => a => a.fill(...p),
+    fill: (...p) => a => [...a].fill(...p),
     /**
      * Composes several pure functions.
      * compose :: ((a -> b), (c -> d), ..., (e -> f)) -> (f)
