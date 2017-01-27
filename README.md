@@ -81,6 +81,7 @@ compose(
 - findIndex :: (a -> Boolean) -> a | -1
 - includes :: a -> [a] -> Boolean
 - join :: a -> [a] -> [a]
+- length ::
 - map :: (a -> b) -> [a] -> [b]
 - pipe :: ((a -> b), (c -> d), ..., (e -> f)) -> (a)
 - pop :: Array -> Array
@@ -91,20 +92,19 @@ compose(
 - slice :: Number -> [a]
 - some :: (a -> Boolean) -> [a]
 - sort ::
+- toString :: 
 - unshift :: a -> [a] -> [a]
 
 ## Where are ...?
 *native*
 - `splice` - untested implementation.
-- `forEach` - Returns `undefined`. Use `map` or `reduce`.
 - `indexOf` - untested implementation.
-- `lastIndexOf` - Use includes.
-- `length` - Not that easy to compose just use `reduce(cnt => cnt + 1, 0)`
+- `lastIndexOf` - untested implementation.
+- `forEach` - Returns `undefined`. Use `map` or `reduce`.
 - `copyWithin` - Mutates! Use `composition` or `pipe`.
 - `fill` - Mutates! It mutates everything! So we left it out.
 - `entries`- Just `map(x => x.entries)`.
 - `keys` - Use `Object.keys`.
-- `toString` - Just use `join(',')`
 
 If you don't agree with anything above that's great. Just log and issue so we can discuss.
 
