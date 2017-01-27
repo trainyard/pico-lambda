@@ -1,6 +1,6 @@
 {
   "name": "pico-lambda",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "native functional js",
   "main": "dist/pico-lambda.js",
   "browser": "dist/pico-lambda.js",
@@ -48,9 +48,6 @@
     "jasmine": "2.5.3",
     "jasmine-node": "1.14.5",
     "jasmine-spec-reporter": "3.2.0",
-    "minifier": "0.8.0",
-    "newline-remove": "1.0.2",
-    "nodemon": "1.11.0",
     "snazzy": "6.0.0",
     "standard": "8.6.0",
     "strip-comments": "0.4.4",
