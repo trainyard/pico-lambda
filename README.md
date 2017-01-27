@@ -81,7 +81,6 @@ compose(
 - findIndex :: (a -> Boolean) -> a | -1
 - includes :: a -> [a] -> Boolean
 - join :: a -> [a] -> [a]
-- length ::
 - map :: (a -> b) -> [a] -> [b]
 - pipe :: ((a -> b), (c -> d), ..., (e -> f)) -> (a)
 - pop :: Array -> Array
@@ -92,21 +91,22 @@ compose(
 - slice :: Number -> [a]
 - some :: (a -> Boolean) -> [a]
 - sort ::
-- toString :: 
+- toString ::
 - unshift :: a -> [a] -> [a]
+- splice ::
+- indexOf ::
+- lastIndexOf ::
+- fill ::
+- copyWithin ::
+- entries-::
+- keys ::
 
 ## Where are ...?
 *native*
-- `splice` - untested implementation.
-- `indexOf` - untested implementation.
-- `lastIndexOf` - untested implementation.
-- `fill` - untested implementation.
-- `copyWithin` - untested implementation.
-- `entries`- untested implementation.
-- `keys` - untested implementation.
+- `length` - doesn't fit the mold.
 - `forEach` - Returns `undefined`. Use `map` or `reduce`.
 
-If you don't agree with anything above that's great. Just log and issue so we can discuss.
+If you don't agree with anything above that's great. Just log an issue so we can discuss.
 
 # Patterns
 Didn't find something you needed checkout out a few easy patterns
