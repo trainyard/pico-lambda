@@ -102,9 +102,9 @@ compose(
 - `lastIndexOf` - untested implementation.
 - `fill` - untested implementation.
 - `copyWithin` - untested implementation.
+- `entries`- untested implementation.
+- `keys` - untested implementation.
 - `forEach` - Returns `undefined`. Use `map` or `reduce`.
-- `entries`- Just `map(x => x.entries)`.
-- `keys` - Use `Object.keys`.
 
 If you don't agree with anything above that's great. Just log and issue so we can discuss.
 
