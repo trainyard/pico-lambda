@@ -1,6 +1,6 @@
 {
   "name": "pico-lambda",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "native functional js",
   "main": "dist/pico-lambda.js",
   "browser": "dist/pico-lambda.js",
