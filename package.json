@@ -2,7 +2,7 @@
   "name": "pico-lambda",
   "version": "0.1.0",
   "description": "native functional js",
-  "main": "index.js",
+  "main": "dist/pico-lambda.js",
   "browser": "dist/pico-lambda.js",
   "scripts": {
     "clean": "rm -rf dist ; mkdir dist ;",
