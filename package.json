@@ -33,6 +33,10 @@
       "url": "https://github.com/mattmcfarland"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trainyard/pico-lambda.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "condense-whitespace": "1.0.0",
