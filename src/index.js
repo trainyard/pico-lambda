@@ -3,7 +3,7 @@ const lambda = Object
   .getOwnPropertyNames(Array.prototype)
   .reduce((lambda, method) => {
     lambda[method] = (['concat', 'every', 'filter', 'find', 'findIndex', 'includes', 'join', 'map', 'reduce', 'reduceRight', 'slice', 'some'].includes(method))
-         ? (fn) => (arr, ...params) => arr[method](fn, ...params)
+         ? (fn, ...params) => (arr) => arr[method](fn, ...params)
          : (['sort', 'copyWithin', 'fill'].includes(method))
             ? (...params) => arr => [...arr][method](...params)
             : (['toLocaleString', 'indexOf', 'lastIndexOf'].includes(method))

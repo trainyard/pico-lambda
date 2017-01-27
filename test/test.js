@@ -1,5 +1,8 @@
 const { describe, it, PicoLambda } = init()
-const { concat, copyWithin, every, entries, filter, fill, find, findIndex, includes, indexOf, keys, join, lastIndexOf, map, pop, push, toString, toLocaleString, reduce, reduceRight, reverse, shift, slice, splice, some, sort, compose, pipe, unshift } = PicoLambda
+const { compose, concat, copyWithin, entries, every, fill, filter, find,
+        findIndex, includes, indexOf, join, keys, lastIndexOf, map, pipe,
+        pop, push, reduce, reduceRight, reverse, shift, slice, splice, some,
+        sort, toLocaleString, toString, unshift } = PicoLambda
 
 function init() {
 
@@ -289,7 +292,7 @@ describe('api: lastIndexOf', () => {
 })
 
 describe('api: map', () => {
-  it('applys function to items in array', () => {
+  it('applies function to items in array', () => {
     const double = map(x => x * 2)
     const result = double([1, 2, 3])
     expect(result).toEqual([2, 4, 6])
@@ -303,29 +306,29 @@ describe('api: map', () => {
 })
 
 describe('api: reduce', () => {
-  it('applys function to each item and accums results from left to right', () => {
-    const sum = reduce((acc, val) => acc + val)
-    const total = sum([2, 3, 4], 99)
+  it('applies function to each item and accums results from left to right', () => {
+    const sum = reduce((acc, val) => acc + val, 99)
+    const total = sum([2, 3, 4])
     expect(total).toEqual(108)
   })
   it('should not alter the original array', () => {
     var arr = [2, 3, 4]
-    const sum = reduce((acc, val) => acc + val)
-    const total = sum(arr, 99)
+    const sum = reduce((acc, val) => acc + val, 99)
+    const total = sum(arr)
     expect(arr).toEqual([2, 3, 4])
   })
 })
 
 describe('api: reduce right', () => {
-  it('applys function to each item and accums results from right to left', () => {
-    const sum = reduceRight(((acc, val) => acc - val), 10)
-    const total = sum([2, 3, 4], 99)
+  it('applies function to each item and accums results from right to left', () => {
+    const sum = reduceRight(((acc, val) => acc - val), 99)
+    const total = sum([2, 3, 4])
     expect(total).toEqual(90)
   })
   it('should not alter the original array', () => {
     var arr = [2, 3, 4]
-    const sum = reduceRight(((acc, val) => acc - val), 10)
-    const total = sum(arr, 99)
+    const sum = reduceRight(((acc, val) => acc - val), 99)
+    const total = sum(arr)
     expect(arr).toEqual([2, 3, 4])
   })
 })
