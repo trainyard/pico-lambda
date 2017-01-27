@@ -100,9 +100,9 @@ compose(
 - `splice` - untested implementation.
 - `indexOf` - untested implementation.
 - `lastIndexOf` - untested implementation.
+- `fill` - untested implementation.
+- `copyWithin` - untested implementation.
 - `forEach` - Returns `undefined`. Use `map` or `reduce`.
-- `copyWithin` - Mutates! Use `composition` or `pipe`.
-- `fill` - Mutates! It mutates everything! So we left it out.
 - `entries`- Just `map(x => x.entries)`.
 - `keys` - Use `Object.keys`.
 
