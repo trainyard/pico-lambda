@@ -6,10 +6,6 @@
     },
     "root": "./",
     "browsers": [{
-      "os": "win",
-      "browser": "ie",
-      "version": 11.0
-    }, {
       "os": "ios",
       "device": "iPad Mini",
       "version": 6.0
