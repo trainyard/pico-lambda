@@ -166,27 +166,45 @@ hasUnicorn(animals) // false
 Returns the index of the given element if it is in the given array, otherwise -1.
 The 2nd parameter can be used to change where it starts looking.
 
+```js
+indexOf(3)([1, 2, 3, 4, 5]) // => 2
+indexOf(3, 3)([[1, 2, 3, 4, 5, 3]) // => 3
+```
 > See [Array.indexOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)
 
 ### join :: `String -> [a] -> String`
 Converts each element of the array to a string and concatenates them together with the given string as a delimiter.
 
+```js
+join('-')([1, 2, 3]) // => '1-2-3'
+```
 > See [Array.join (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
 ### keys :: `[a] -> [Int]`
 Return an iterator over keys from the array.
 
+```js
+const iterator = keys([1, 2, 3, 4, 5])
+iterator.next() // => { value: 0, done: false }
+```
 > See [Array.keys (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys)
 
 ### lastIndexOf :: `(a, Int) -> [a] -> Int`
 Works like indexOf but starts at the end and works backwards.
 The 2nd parameter can be used to tell it where to start working backwards from.
 
+```js
+lastIndexOf(1)([1, 2, 3, 1]) // => 3
+lastIndexOf(1, -2)([1, 2, 3, 1]) // => 0
+```
 > See [Array.lastIndexOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf)
 
 ### map :: `(a -> b) -> [a] -> [b]`
 Applies a function over each element in the given array, returning a new array with each functions results.
 
+```js
+map(x => x * 2)([1, 2, 3]) // => 2, 4, 6
+```
 > See [Array.map (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ### pipe :: `((a -> b), (b -> c), ..., (e -> f)) -> a -> f`
@@ -194,16 +212,29 @@ Takes an initial value that is passed to the first function in the parameter lis
 The return value of each subsequent function is passed to the following function.
 The return value of the last function is returned from pipe.
 
+```js
+const arr = [1, 2, 3, 4, 5]
+pipe(
+  unshift(0),
+  concat([6, 7, 8])
+)(arr) // => [0, 1, 2, 3, 4, 5, 6, 7, 8]
+```
 > See [Array.pipe (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pipe)
 
 ### pop :: `[a] -> [a]`
 Returns a new array without the last item
 
+```js
+pop([1, 2, 3, 4, 5]) // => [1, 2, 3, 4]
+```
 > See [Array.pop (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)
 
 ### push :: `a -> [a] -> [a]`
 Returns a new array with the new element appended to the end of the original array.
 
+```js
+push(5)([1, 2, 3, 4]) // => [1, 2, 3, 4, 5]
+```
 > See [Array.push (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
 
 ### reduce :: `((a, b) -> a) -> a -> [b] -> a`
