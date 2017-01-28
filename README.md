@@ -16,6 +16,16 @@
     <img src="https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square"
       alt="API stability" />
   </a>
+  <!-- Downloads -->
+  <a href="https://npmjs.org/package/pico-lambda">
+    <img src="https://img.shields.io/npm/dm/pico-lambda.svg?style=flat-square"
+      alt="Downloads" />
+  </a>
+  <!-- Semi Standard -->
+  <a href="https://github.com/Flet/semistandard">
+    <img src="https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square"
+      alt="semistandard" />
+  </a>
 </div>
 
 ## why pico-lambda
