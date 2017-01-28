@@ -89,6 +89,21 @@ describe('api: copyWithin', () => {
   })
 })
 
+describe('api: entries', () => {
+  it('should return an interator that contains key values pair of given array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const iterator = entries(arr)
+    expect(iterator.next()).toEqual({ value: [0, 1], done: false })
+  })
+  it('should not alter the original array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const iterator = entries(arr)
+    iterator.next()
+    iterator.next()
+    expect(arr).toEqual([1, 2, 3, 4, 5])
+  })
+})
+
 describe('api: every', () => {
   it('should return false if any items do not pass predicate', () => {
     const arr = [1, 2, 3, 4, 5]
@@ -126,21 +141,6 @@ describe('api: fill', () => {
   it('should not alter the original array', () => {
     var arr = [1, 2, 3, 4, 5]
     const result = fill(1)(arr)
-    expect(arr).toEqual([1, 2, 3, 4, 5])
-  })
-})
-
-describe('api: entries', () => {
-  it('should return an interator that contains key values pair of given array', () => {
-    const arr = [1, 2, 3, 4, 5]
-    const iterator = entries(arr)
-    expect(iterator.next()).toEqual({ value: [0, 1], done: false })
-  })
-  it('should not alter the original array', () => {
-    const arr = [1, 2, 3, 4, 5]
-    const iterator = entries(arr)
-    iterator.next()
-    iterator.next()
     expect(arr).toEqual([1, 2, 3, 4, 5])
   })
 })
@@ -243,6 +243,21 @@ describe('api: indexOf', () => {
   })
 })
 
+describe('api: join', () => {
+  it('should return a string with each item separated with character passed in', () => {
+    var arr = [1, 2, 3, 4, 5]
+    const separateByDash = join('-')
+    const result = separateByDash(arr)
+    expect(result).toEqual('1-2-3-4-5')
+  })
+  it('should not alter the original array', () => {
+    var arr = [1, 2, 3, 4, 5]
+    const separateByDash = join('-')
+    const result = separateByDash(arr)
+    expect(arr).toEqual([1, 2, 3, 4, 5])
+  })
+})
+
 describe('api: keys', () => {
   it('should return an iterator of keys of given array', () => {
     const arr = [1, 2, 3, 4, 5]
@@ -258,20 +273,7 @@ describe('api: keys', () => {
   })
 })
 
-describe('api: join', () => {
-  it('should return a string with each item separated with character passed in', () => {
-    var arr = [1, 2, 3, 4, 5]
-    const separateByDash = join('-')
-    const result = separateByDash(arr)
-    expect(result).toEqual('1-2-3-4-5')
-  })
-  it('should not alter the original array', () => {
-    var arr = [1, 2, 3, 4, 5]
-    const separateByDash = join('-')
-    const result = separateByDash(arr)
-    expect(arr).toEqual([1, 2, 3, 4, 5])
-  })
-})
+
 
 describe('api: lastIndexOf', () => {
   it('should find the index of the last occurrence of an element', () => {
@@ -362,7 +364,6 @@ describe('api: some', () => {
   })
 })
 
-/*////////////// Maybe ///////////*/
 describe('api: reverse', () => {
   it('should return array reversed', () => {
     const arr = [1, 2, 3, 4, 5]
@@ -501,8 +502,6 @@ describe('api: sort', () => {
     expect(arr).toEqual([20, 1, 3, 4, 2])
   })
 })
-
-/*/////////////// end maybe //////////*/
 
 describe('api: compose', () => {
   const is = a => b => {

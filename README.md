@@ -68,14 +68,24 @@ compose(
 
 ## Api
 ### compose :: `((e -> f), ..., (b -> c), (a -> b)) -> a -> f`
+
 Evaluates the provided functions, right to left, passing the return value
 of each function to the next in line.
 The initial function is passed the initial value provided to comopse.
 The output of the final function, in this case `(e->f)`, is returned.
+
+```js
+compose(
+  map(x => x + 1),
+  map(x => x + 1),
+  map(x => x + 1)
+)([0]) // => 3
+```
 ### concat :: `[a] -> ([a], ..., [a]) -> [a]`
 Concatenates two arrays
+
 ```js
-concat([4, 5])([1,2,3])    // => [1, 2, 3, 4, 5]
+concat([4, 5])([1,2,3]) // => [1, 2, 3, 4, 5]
 concat([4, 5])([1,2], [3]) // => [1, 2, 3, 4, 5]
 ```
 > See [Array.concat (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
@@ -83,68 +93,128 @@ concat([4, 5])([1,2], [3]) // => [1, 2, 3, 4, 5]
 ### copyWithin :: `(Int, Int, Int) -> [a] -> [a]`
 Makes a shallow copy of part of an array and overwrites another location in the same with the copy. Size is kept constant.
 
+```js
+const arr = [1, 2, 3, 4, 5]
+copyWithin(3, 1)(arr) // => [1, 2, 3, 2, 3]
+copyWithin(3, 1, 2)(arr) // => [1, 2, 3, 2, 5]
+```
 > See [Array.copyWithin (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)
 
 ### entries:: `[a] -> [b]`
 Return an iterator over key, value pairs from the array.
 
+```js
+const iterator = entries([1, 2, 3, 4, 5])
+iterator.next()) // => { value: [0, 1], done: false }
+```
 > See [Array.entries (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries)
 
 ### every  :: `((a, Int, [a]) -> Boolean) -> [a] -> Boolean`
 Applies predicate to all elements in array and returns false if any fail. The predicate function must at least take one parameter for each element but may optionally take an index and the entire array as 2nd and 3rd parameters, respectively.
 
+```js
+const predicate = x => x < 4
+every(predicate)([1, 2, 3]) // => true
+every(predicate)([1, 2, 3, 4, 5]) // => false
+```
 > See [Array.every (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
 
 ### fill :: `(a, Int, Int) -> [a] -> [a]`
 Fills a portion of the given array putting the same new value into each slot.
 
+```js
+const arr = [1, 2, 3, 4, 5]
+fill(1)(arr) // => [1, 1, 1, 1, 1]
+fill(1, 2, 4)(arr) // => [1, 2, 1, 1, 5]
+```
 > See [Array.fill (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)
 
 ### filter :: `((a, Int, [a]) -> Boolean) -> [a] -> [a]`
 Returns a new array containing only those elements of the given array that pass the given predicate.
 
+```js
+const predicate = x => x < 3
+filter(predicate)([1, 2, 3, 4, 5]) // => [1, 2]
+```
 > See [Array.filter (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
 ### find :: `(a -> Boolean) -> [a] -> a | undefined`
 Finds and returns the first element in the given array that matches the given predicate. If no element passes, undefined is returned.
 
+```js
+const predicate = x => x === 3
+find(predicate)([1, 2, 3]) // => 3
+find(predicate)([1, 2]) // => undefined
+```
 > See [Array.find (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
 
 ### findIndex :: `(a -> Boolean) -> [a] -> Int`
 Returns the index of the first element in the given array that matches the given predicate. If no element passes, -1 is returned.
 
+```js
+const arr = [1, 2, 3, 4, 5]
+const findIndex = x => x === 3
+find(x => x > 3)(arr) // => 3
+find(x => x > 80)(arr]) // => -1
+```
 > See [Array.findIndex (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
 
 ### includes :: `a -> [a] -> Boolean`
 Returns true if the given element is in the given array, otherwise false.
 
+```js
+const animals = ['dog', 'cat', 'ferret', 'hamster']
+const hasCat = includes('cat')
+const hasUnicorn = includes('unicorn')
+
+hasCat(animals) // true
+hasUnicorn(animals) // false
+```
 > See [Array.includes (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)
 
 ### indexOf :: `(a, Int) -> [a] -> Int`
 Returns the index of the given element if it is in the given array, otherwise -1.
 The 2nd parameter can be used to change where it starts looking.
 
+```js
+indexOf(3)([1, 2, 3, 4, 5]) // => 2
+indexOf(3, 3)([[1, 2, 3, 4, 5, 3]) // => 3
+```
 > See [Array.indexOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)
 
 ### join :: `String -> [a] -> String`
 Converts each element of the array to a string and concatenates them together with the given string as a delimiter.
 
+```js
+join('-')([1, 2, 3]) // => '1-2-3'
+```
 > See [Array.join (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
 ### keys :: `[a] -> [Int]`
 Return an iterator over keys from the array.
 
+```js
+const iterator = keys([1, 2, 3, 4, 5])
+iterator.next() // => { value: 0, done: false }
+```
 > See [Array.keys (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys)
 
 ### lastIndexOf :: `(a, Int) -> [a] -> Int`
 Works like indexOf but starts at the end and works backwards.
 The 2nd parameter can be used to tell it where to start working backwards from.
 
+```js
+lastIndexOf(1)([1, 2, 3, 1]) // => 3
+lastIndexOf(1, -2)([1, 2, 3, 1]) // => 0
+```
 > See [Array.lastIndexOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf)
 
 ### map :: `(a -> b) -> [a] -> [b]`
 Applies a function over each element in the given array, returning a new array with each functions results.
 
+```js
+map(x => x * 2)([1, 2, 3]) // => 2, 4, 6
+```
 > See [Array.map (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ### pipe :: `((a -> b), (b -> c), ..., (e -> f)) -> a -> f`
@@ -152,16 +222,29 @@ Takes an initial value that is passed to the first function in the parameter lis
 The return value of each subsequent function is passed to the following function.
 The return value of the last function is returned from pipe.
 
+```js
+const arr = [1, 2, 3, 4, 5]
+pipe(
+  unshift(0),
+  concat([6, 7, 8])
+)(arr) // => [0, 1, 2, 3, 4, 5, 6, 7, 8]
+```
 > See [Array.pipe (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pipe)
 
 ### pop :: `[a] -> [a]`
 Returns a new array without the last item
 
+```js
+pop([1, 2, 3, 4, 5]) // => [1, 2, 3, 4]
+```
 > See [Array.pop (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)
 
 ### push :: `a -> [a] -> [a]`
 Returns a new array with the new element appended to the end of the original array.
 
+```js
+push(5)([1, 2, 3, 4]) // => [1, 2, 3, 4, 5]
+```
 > See [Array.push (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
 
 ### reduce :: `((a, b) -> a) -> a -> [b] -> a`
