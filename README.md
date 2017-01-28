@@ -58,14 +58,24 @@ compose(
 
 ## Api
 ### compose :: `((e -> f), ..., (b -> c), (a -> b)) -> a -> f`
+
 Evaluates the provided functions, right to left, passing the return value
 of each function to the next in line.
 The initial function is passed the initial value provided to comopse.
 The output of the final function, in this case `(e->f)`, is returned.
+
+```js
+compose(
+  map(x => x + 1),
+  map(x => x + 1),
+  map(x => x + 1)
+)([0]) // => 3
+```
 ### concat :: `[a] -> ([a], ..., [a]) -> [a]`
 Concatenates two arrays
+
 ```js
-concat([4, 5])([1,2,3])    // => [1, 2, 3, 4, 5]
+concat([4, 5])([1,2,3]) // => [1, 2, 3, 4, 5]
 concat([4, 5])([1,2], [3]) // => [1, 2, 3, 4, 5]
 ```
 > See [Array.concat (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
@@ -73,41 +83,83 @@ concat([4, 5])([1,2], [3]) // => [1, 2, 3, 4, 5]
 ### copyWithin :: `(Int, Int, Int) -> [a] -> [a]`
 Makes a shallow copy of part of an array and overwrites another location in the same with the copy. Size is kept constant.
 
+```js
+const arr = [1, 2, 3, 4, 5]
+copyWithin(3, 1)(arr) // => [1, 2, 3, 2, 3]
+copyWithin(3, 1, 2)(arr) // => [1, 2, 3, 2, 5]
+```
 > See [Array.copyWithin (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)
 
 ### entries:: `[a] -> [b]`
 Return an iterator over key, value pairs from the array.
 
+```js
+const iterator = entries([1, 2, 3, 4, 5])
+iterator.next()) // => { value: [0, 1], done: false }
+```
 > See [Array.entries (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries)
 
 ### every  :: `((a, Int, [a]) -> Boolean) -> [a] -> Boolean`
 Applies predicate to all elements in array and returns false if any fail. The predicate function must at least take one parameter for each element but may optionally take an index and the entire array as 2nd and 3rd parameters, respectively.
 
+```js
+const predicate = x => x < 4
+every(predicate)([1, 2, 3]) // => true
+every(predicate)([1, 2, 3, 4, 5]) // => false
+```
 > See [Array.every (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
 
 ### fill :: `(a, Int, Int) -> [a] -> [a]`
 Fills a portion of the given array putting the same new value into each slot.
 
+```js
+const arr = [1, 2, 3, 4, 5]
+fill(1)(arr) // => [1, 1, 1, 1, 1]
+fill(1, 2, 4)(arr) // => [1, 2, 1, 1, 5]
+```
 > See [Array.fill (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)
 
 ### filter :: `((a, Int, [a]) -> Boolean) -> [a] -> [a]`
 Returns a new array containing only those elements of the given array that pass the given predicate.
 
+```js
+const predicate = x => x < 3
+filter(predicate)([1, 2, 3, 4, 5]) // => [1, 2]
+```
 > See [Array.filter (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
 ### find :: `(a -> Boolean) -> [a] -> a | undefined`
 Finds and returns the first element in the given array that matches the given predicate. If no element passes, undefined is returned.
 
+```js
+const predicate = x => x === 3
+find(predicate)([1, 2, 3]) // => 3
+find(predicate)([1, 2]) // => undefined
+```
 > See [Array.find (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
 
 ### findIndex :: `(a -> Boolean) -> [a] -> Int`
 Returns the index of the first element in the given array that matches the given predicate. If no element passes, -1 is returned.
 
+```js
+const arr = [1, 2, 3, 4, 5]
+const findIndex = x => x === 3
+find(x => x > 3)(arr) // => 3
+find(x => x > 80)(arr]) // => -1
+```
 > See [Array.findIndex (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
 
 ### includes :: `a -> [a] -> Boolean`
 Returns true if the given element is in the given array, otherwise false.
 
+```js
+const animals = ['dog', 'cat', 'ferret', 'hamster']
+const hasCat = includes('cat')
+const hasUnicorn = includes('unicorn')
+
+hasCat(animals) // true
+hasUnicorn(animals) // false
+```
 > See [Array.includes (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)
 
 ### indexOf :: `(a, Int) -> [a] -> Int`

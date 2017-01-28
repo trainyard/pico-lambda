@@ -89,6 +89,21 @@ describe('api: copyWithin', () => {
   })
 })
 
+describe('api: entries', () => {
+  it('should return an interator that contains key values pair of given array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const iterator = entries(arr)
+    expect(iterator.next()).toEqual({ value: [0, 1], done: false })
+  })
+  it('should not alter the original array', () => {
+    const arr = [1, 2, 3, 4, 5]
+    const iterator = entries(arr)
+    iterator.next()
+    iterator.next()
+    expect(arr).toEqual([1, 2, 3, 4, 5])
+  })
+})
+
 describe('api: every', () => {
   it('should return false if any items do not pass predicate', () => {
     const arr = [1, 2, 3, 4, 5]
@@ -126,21 +141,6 @@ describe('api: fill', () => {
   it('should not alter the original array', () => {
     var arr = [1, 2, 3, 4, 5]
     const result = fill(1)(arr)
-    expect(arr).toEqual([1, 2, 3, 4, 5])
-  })
-})
-
-describe('api: entries', () => {
-  it('should return an interator that contains key values pair of given array', () => {
-    const arr = [1, 2, 3, 4, 5]
-    const iterator = entries(arr)
-    expect(iterator.next()).toEqual({ value: [0, 1], done: false })
-  })
-  it('should not alter the original array', () => {
-    const arr = [1, 2, 3, 4, 5]
-    const iterator = entries(arr)
-    iterator.next()
-    iterator.next()
     expect(arr).toEqual([1, 2, 3, 4, 5])
   })
 })
