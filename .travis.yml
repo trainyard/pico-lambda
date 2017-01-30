@@ -23,5 +23,5 @@ install:
   - npm install
 
 script:
-  - npm test && npm run lint && npm run test:remote
+  - npm test
 
