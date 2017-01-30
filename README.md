@@ -33,7 +33,7 @@
   </a>
 </div>
 <div align="center">
-  <a href="https://www.browserstack.com/"><img src="./Logo-01.svg"></a>
+  <a href="https://www.browserstack.com/"><img src="Logo-01.svg"></a>
 </div>
 ## why pico-lambda
 - **Pico:** weighs less than 460 bytes gzipped.
