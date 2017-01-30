@@ -7,10 +7,10 @@
   "scripts": {
     "clean": "rm -rf dist ; mkdir dist ;",
     "build": "npm run clean ; node build.js src/index.js dist/pico-lambda.js",
-    "test": "semistandard src/index.js | snazzy && jasmine test/test.js",
+    "test": "semistandard src/index.js test/test.js | snazzy && jasmine test/test.js",
     "test:chrome": "DEBUG=testee:* testee test/jasmine.html --browsers chrome",
     "test:remote": "DEBUG=testee:* testee src/unit.html -c ./testee.remote.json",
-    "lint": "semistandard src/index.js --fix | snazzy",
+    "lint": "semistandard src/index.js test/test.js --fix | snazzy",
     "watch": "nodemon --exec 'jasmine' test/test.js",
     "docs": "jsdoc src/index.js README.md -t node_modules/jaguarjs-jsdoc -d docs"
   },
