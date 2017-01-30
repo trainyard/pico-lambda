@@ -9,7 +9,7 @@ const lambda = Object
             : (['toLocaleString', 'indexOf', 'lastIndexOf'].includes(method))
               ? (...params) => arr => arr[method](...params)
               : (['push', 'splice'].includes(method))
-                ? (...params) => arr => { var t = [...arr]; t[method](...params); return t }
+                ? (...params) => arr => { var t = [...arr]; t[method](...params); return t; }
                 : (['toString', 'entries', 'keys'].includes(method))
                   ? arr => arr[method]()
                   : lambda[method];
