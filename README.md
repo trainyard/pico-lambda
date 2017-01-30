@@ -11,6 +11,11 @@
 </div>
 
 <div align="center">
+  <!-- Build Status -->
+  <a href="https://travis-ci.org/trainyard/pico-lambda">
+    <img src="https://travis-ci.org/trainyard/pico-lambda.svg?branch=master"
+      alt="Build Status" />
+  </a>
   <!-- Stability -->
   <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
     <img src="https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square"
