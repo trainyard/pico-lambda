@@ -2,11 +2,11 @@ module.exports = function(config) {
   config.set({
     // global config of your BrowserStack account
     browserStack: {
-      username: process.env.BS_USER,
-      accessKey: process.env.BS_KEY,
+      username: 'mattmcfarland2',
+      accessKey: '8XtpNwsCV785G5gStzgP',
       build: process.env.BUILD,
     },
-    logLevel: LOG_INFO,
+    logLevel: global.LOG_INFO || 'LOG_INFO',
     singleRun: true,
     basePath: './',
     files: ['src/index.js', 'test/test.js'],
