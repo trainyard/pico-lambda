@@ -6,6 +6,8 @@ module.exports = function(config) {
       accessKey: '8XtpNwsCV785G5gStzgP',
       build: process.env.BUILD,
     },
+    logLevel: LOG_INFO,
+    singleRun: true,
     basePath: './',
     files: ['src/index.js', 'test/test.js'],
     frameworks: ['jasmine'],
