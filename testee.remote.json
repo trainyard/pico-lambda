@@ -6,13 +6,11 @@
     },
     "root": "./",
     "browsers": [{
-      "os": "ios",
-      "device": "iPad Mini",
-      "version": 6.0
+      "os": "win",
+      "browser": "firefox"
     }, {
-      "os": "android",
-      "device": "Samsung Galaxy S III",
-      "version": "4.1"
+      "os": "win",
+      "browser": "chrome"
     }]
 }
 
