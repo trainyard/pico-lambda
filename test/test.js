@@ -18,10 +18,10 @@ function init() {
   }
 
   if (typeof window !== 'undefined') {
-    const { PicoLambda, describe, it } = window
+    let { PicoLambda, describe, it } = window
     return { PicoLambda, describe, it }
   } else {
-    const PicoLambda = require('../src/index.js')
+    var PicoLambda = require('../src/index.js')
     const { describe, it } = global
     return { PicoLambda, describe, it }
   }

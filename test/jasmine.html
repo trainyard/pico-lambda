@@ -12,11 +12,13 @@
     <script type="text/javascript">
     if(window.Testee) {
         window.Testee.init();
+        console.log('Testee initialized');
     }
     if (window.Testee) {
-        Testee.end({});
+        window.Testee.end({});
     }
-    </script>    
-    
+    console.log('Page loaded', window.performance.timings);
+    </script>
+
     </body>
 </html>
