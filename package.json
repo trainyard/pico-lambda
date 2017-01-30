@@ -7,10 +7,10 @@
   "scripts": {
     "clean": "rm -rf dist ; mkdir dist ;",
     "build": "npm run clean ; node build.js src/index.js dist/pico-lambda.js",
-    "test": "standard src/index.js | snazzy && jasmine test/test.js",
+    "test": "semistandard src/index.js | snazzy && jasmine test/test.js",
     "test:chrome": "DEBUG=testee:* testee test/jasmine.html --browsers chrome",
     "test:remote": "DEBUG=testee:* testee src/unit.html -c ./testee.remote.json",
-    "lint": "standard src/index.js --fix | snazzy",
+    "lint": "semistandard src/index.js --fix | snazzy",
     "watch": "nodemon --exec 'jasmine' test/test.js",
     "docs": "jsdoc src/index.js README.md -t node_modules/jaguarjs-jsdoc -d docs"
   },
@@ -39,25 +39,17 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "condense-whitespace": "1.0.0",
-    "docdown": "^0.7.2",
-    "faucet": "0.0.1",
-    "install": "^0.8.4",
-    "jaguarjs-jsdoc": "^1.0.2",
-    "jsdoc": "^3.4.3",
-    "minifier": "0.8.0",
-    "newline-remove": "1.0.2",
-    "nodemon": "1.11.0",
-    "npm": "^4.1.1",
     "jasmine": "2.5.3",
     "jasmine-node": "1.14.5",
     "jasmine-spec-reporter": "3.2.0",
+    "jsdoc": "^3.4.3",
+    "nodemon": "1.11.0",
+    "npm": "^4.1.1",
+    "semistandard": "^9.2.1",
     "snazzy": "6.0.0",
-    "standard": "8.6.0",
     "strip-comments": "0.4.4",
     "tape": "4.6.3",
     "testee": "0.3.0",
-    "testee-client": "0.3.4",
-    "testling": "1.7.1"
+    "testee-client": "0.3.4"
   }
 }
