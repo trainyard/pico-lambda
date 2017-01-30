@@ -2,8 +2,8 @@ module.exports = function(config) {
   config.set({
     // global config of your BrowserStack account
     browserStack: {
-      username: 'mattmcfarland2',
-      accessKey: '8XtpNwsCV785G5gStzgP',
+      username: process.env.BS_USER,
+      accessKey: process.env.BS_KEY,
       build: process.env.BUILD,
     },
     logLevel: LOG_INFO,
