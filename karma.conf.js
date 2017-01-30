@@ -4,7 +4,7 @@ module.exports = function(config) {
     browserStack: {
       username: 'mattmcfarland2',
       accessKey: '8XtpNwsCV785G5gStzgP',
-      build: process.env.BUILD,
+      build: process.env.TRAVIS_BUILD_NUMBER || process.env.BUILD,
     },
     logLevel: global.LOG_INFO || 'LOG_INFO',
     singleRun: true,
