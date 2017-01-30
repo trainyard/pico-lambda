@@ -353,7 +353,7 @@ describe('api: some', () => {
   it('should return true if at least one items passes predicate', () => {
     const arr = [1, 2, 3, 4, 5]
     const areAllAreLessThanFour = some(x => x < 4)
-    const result = (areAllAreLessThanFour(arr))
+    const result = areAllAreLessThanFour(arr)
     expect(result).toEqual(true)
   })
   it('should not alter the original array', () => {
@@ -400,6 +400,7 @@ describe('api: toLocaleString', () => {
   it('should match standard array toLocaleString output', () => {
     var prices = ["￥7", 500, 8123, 12];
     const result = toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })(prices)
+    console.log('result !!!!!!!!!!!!!!!! ', result)
     expect(result).toEqual(prices.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }))
   })
   it('should not alter the original array', () => {

@@ -250,46 +250,81 @@ push(5)([1, 2, 3, 4]) // => [1, 2, 3, 4, 5]
 ### reduce :: `((a, b) -> a) -> a -> [b] -> a`
 Applies a function against an accumulator and each value of the array (from left-to-right), then returning the accumulator.
 
+```js
+const sum = reduce((acc, val) => acc + val, 99)
+sum([2, 3, 4]) // => 108
+```
 > See [Array.reduce (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
 
 ### reduceRight :: `((a, b) -> a) -> a -> [b] -> a`
 Applies a function against an accumulator and each value of the array (from right-to-left), then returning the accumulator.
 
+```js
+const sum = reduceRight((acc, val) => acc + val, 99)
+sum([2, 3, 4]) // => 90
+```
 > See [Array.reduceRight (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight)
 
 ### reverse ::  `[a] -> [a]`
 Returns a new array with the elements in reverse order.
 
+```js
+reverse([1, 2, 3, 4, 5]) // => [5, 4, 3, 2, 1]
+```
 > See [Array.reverse (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
 
 ### shift :: `[a] -> [a]`
 Returns a new array with the first element removed.
 
+```js
+shift([1, 2, 3, 4, 5]) // => [2, 3, 4, 5]
+```
 > See [Array.shift (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
 
 ### slice :: `(int, int) -> [a] -> [a]`
 Takes a slice from a given array and returns it as a new array.
 
+```js
+const removeFirst = slice(1)
+removeFirst([2, 3, 4]) // => [3, 4]
+```
 > See [Array.slice (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
 
 ### splice :: `(int, int, [a]) -> [a] -> [a]`
 Returns a new array with the indicated elements removed. An optional set of new elements can be inserted in their place.
+```js
+const takeTwo = splice(2)
+takeTwo([1, 2, 3, 4, 5]) // => [1, 2]
 
+```
 > See [Array.splice (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
 
 ### some :: `(a -> Boolean) -> [a] -> Boolean`
 Returns true if any element in the given array matches the given predicate.
 
+```js
+const lessThanFour = some(x => x < 4)
+lessThanFour([1, 2, 3, 4, 5]) // => true
+```
 > See [Array.some (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
 
 ### sort :: `((a, a) -> int) -> [a] -> [a]`
 Returns a copy of the original array with the values sorted. If a comparator function is provided it should return -1, 0 or 1 depending on whether the first element is less than, equal to or greater than the second, respectively. If no comparator is given, lexical sorting is used.
 
+```js
+const numComp = (a, b) => (a < b) ? -1 : (a === b) ? 0 : 1
+const sortBy = sort(numComp)
+sortBy([20, 1, 3, 4, 2]) // => [1, 2, 3, 4, 20]
+```
 > See [Array.sort (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
 ### toLocaleString :: `(String, Obj) -> [a] -> String`
 Converts each element of an array into a string based on current locale settings or locale options passed in. The resulting strings are appended together using commas.
 
+```js
+const toYen = toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })
+toYen(["￥7", 500, 8123, 12]) // => 
+```
 > See [Array.toLocaleString (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString)
 
 ### toString :: `[a] -> String`
