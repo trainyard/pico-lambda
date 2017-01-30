@@ -11,6 +11,11 @@
 </div>
 
 <div align="center">
+  <!-- Build Status -->
+  <a href="https://travis-ci.org/trainyard/pico-lambda">
+    <img src="https://travis-ci.org/trainyard/pico-lambda.svg?branch=master"
+      alt="Build Status" />
+  </a>
   <!-- Stability -->
   <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
     <img src="https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square"
@@ -66,23 +71,23 @@ compose(
 
 * * *
 
-## Api
+## API
 ### compose :: `((e -> f), ..., (b -> c), (a -> b)) -> a -> f`
 
 Evaluates the provided functions, right to left, passing the return value
 of each function to the next in line.
-The initial function is passed the initial value provided to comopse.
-The output of the final function, in this case `(e->f)`, is returned.
+The initial function is passed the initial value provided to compose.
+The output of the final function, in the above case `(e->f)`, is returned.
 
 ```js
 compose(
-  map(x => x + 1),
-  map(x => x + 1),
-  map(x => x + 1)
-)([0]) // => 3
+  map(x => x + 1),  // (c -> d)
+  map(x => x + 1),  // (b -> c)
+  map(x => x + 1)   // (a -> b)
+)([0]) // (-> a) => 3
 ```
 ### concat :: `[a] -> ([a], ..., [a]) -> [a]`
-Concatenates two arrays
+Concatenates two or more arrays
 
 ```js
 concat([4, 5])([1,2,3]) // => [1, 2, 3, 4, 5]
@@ -90,9 +95,11 @@ concat([4, 5])([1,2], [3]) // => [1, 2, 3, 4, 5]
 ```
 > See [Array.concat (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
 
-### copyWithin :: `(Int, Int, Int) -> [a] -> [a]`
+### copyWithin :: `(Int, Int, Int) -> [a] -> [a]` | `(Int, Int) -> [a] -> [a]`
 Makes a shallow copy of part of an array and overwrites another location in the same with the copy. Size is kept constant.
-
+* The first Int is the target index to write the copy to.
+* The second Int is the index to start the copy from.
+* The third, optional, Int specifies the end of the range to copy (exclusive of the end index). If not provided, it goes to the end of the array.
 ```js
 const arr = [1, 2, 3, 4, 5]
 copyWithin(3, 1)(arr) // => [1, 2, 3, 2, 3]
@@ -119,8 +126,11 @@ every(predicate)([1, 2, 3, 4, 5]) // => false
 ```
 > See [Array.every (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
 
-### fill :: `(a, Int, Int) -> [a] -> [a]`
+### fill :: `(a, Int, Int) -> [a] -> [a]` | `(a) -> [a] -> [a]`
 Fills a portion of the given array putting the same new value into each slot.
+* The first parameters (a) is the element to add into the array
+* The second parameter (Int) is the first index to start filling at. If not supplied it starts at 0.
+* The third parameter (Int) is the index to stop filling before (i.e., exclusive). If not supplied fill goes to the end of the array.
 
 ```js
 const arr = [1, 2, 3, 4, 5]
@@ -172,7 +182,7 @@ hasUnicorn(animals) // false
 ```
 > See [Array.includes (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)
 
-### indexOf :: `(a, Int) -> [a] -> Int`
+### indexOf :: `(a, Int) -> [a] -> Int` | `(a) -> [a] -> Int`
 Returns the index of the given element if it is in the given array, otherwise -1.
 The 2nd parameter can be used to change where it starts looking.
 
@@ -199,7 +209,7 @@ iterator.next() // => { value: 0, done: false }
 ```
 > See [Array.keys (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys)
 
-### lastIndexOf :: `(a, Int) -> [a] -> Int`
+### lastIndexOf :: `(a, Int) -> [a] -> Int` | `(a) -> [a] -> Int`
 Works like indexOf but starts at the end and works backwards.
 The 2nd parameter can be used to tell it where to start working backwards from.
 
@@ -210,7 +220,7 @@ lastIndexOf(1, -2)([1, 2, 3, 1]) // => 0
 > See [Array.lastIndexOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf)
 
 ### map :: `(a -> b) -> [a] -> [b]`
-Applies a function over each element in the given array, returning a new array with each functions results.
+Applies a function over each element in the given array, returning a new array with each function call's results.
 
 ```js
 map(x => x * 2)([1, 2, 3]) // => 2, 4, 6
@@ -225,8 +235,8 @@ The return value of the last function is returned from pipe.
 ```js
 const arr = [1, 2, 3, 4, 5]
 pipe(
-  unshift(0),
-  concat([6, 7, 8])
+  unshift(0),        // (a -> b)
+  concat([6, 7, 8])  // (b -> c)
 )(arr) // => [0, 1, 2, 3, 4, 5, 6, 7, 8]
 ```
 > See [Array.pipe (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pipe)

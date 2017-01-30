@@ -1,6 +1,6 @@
 {
   "name": "pico-lambda",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "native functional js",
   "main": "dist/pico-lambda.js",
   "browser": "dist/pico-lambda.js",
@@ -8,11 +8,9 @@
     "clean": "rm -rf dist ; mkdir dist ;",
     "build": "npm run clean ; node build.js src/index.js dist/pico-lambda.js",
     "test": "semistandard src/index.js test/test.js | snazzy && jasmine test/test.js",
-    "test:chrome": "DEBUG=testee:* testee test/jasmine.html --browsers chrome",
-    "test:remote": "DEBUG=testee:* testee src/unit.html -c ./testee.remote.json",
+    "test:remote": "BUILD=$(git rev-parse --short HEAD) karma start karma.conf.js",
     "lint": "semistandard src/index.js test/test.js --fix | snazzy",
-    "watch": "nodemon --exec 'jasmine' test/test.js",
-    "docs": "jsdoc src/index.js README.md -t node_modules/jaguarjs-jsdoc -d docs"
+    "watch": "nodemon --exec 'jasmine' test/test.js"
   },
   "keywords": [
     "functional",
@@ -39,25 +37,16 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "condense-whitespace": "1.0.0",
-    "docdown": "^0.7.2",
-    "faucet": "0.0.1",
-    "install": "^0.8.4",
-    "jaguarjs-jsdoc": "^1.0.2",
     "jasmine": "2.5.3",
     "jasmine-node": "1.14.5",
     "jasmine-spec-reporter": "3.2.0",
-    "jsdoc": "^3.4.3",
-    "minifier": "0.8.0",
-    "newline-remove": "1.0.2",
+    "karma": "^1.4.1",
+    "karma-browserstack-launcher": "^1.2.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.1.0",
     "nodemon": "1.11.0",
-    "npm": "^4.1.1",
     "semistandard": "^9.2.1",
     "snazzy": "6.0.0",
-    "strip-comments": "0.4.4",
-    "tape": "4.6.3",
-    "testee": "0.3.0",
-    "testee-client": "0.3.4",
-    "testling": "1.7.1"
+    "strip-comments": "0.4.4"
   }
 }

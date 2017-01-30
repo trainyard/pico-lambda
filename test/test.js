@@ -8,8 +8,8 @@ function init () {
   if (typeof window === 'undefined') {
     const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
-    jasmine.getEnv().clearReporters();               // remove default reporter logs
-    jasmine.getEnv().addReporter(new SpecReporter({  // add jasmine-spec-reporter
+    global.jasmine.getEnv().clearReporters();               // remove default reporter logs
+    global.jasmine.getEnv().addReporter(new SpecReporter({  // add jasmine-spec-reporter
       spec: {
         displayPending: true
       }
@@ -17,12 +17,12 @@ function init () {
   }
 
   if (typeof window !== 'undefined') {
-    const { PicoLambda, describe, it } = window;
-    return { PicoLambda, describe, it };
+    const { PicoLambda, describe, expect, it } = window;
+    return { PicoLambda, describe, expect, it };
   } else {
     const PicoLambda = require('../src/index.js');
-    const { describe, it } = global;
-    return { PicoLambda, describe, it };
+    const { describe, expect, it } = global;
+    return { PicoLambda, describe, expect, it };
   }
 }
 
