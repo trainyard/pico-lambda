@@ -13,23 +13,16 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
     // define browsers
     customLaunchers: {
-      bs_safari_mac: {
+      bs_chrome_win10: {
         base: 'BrowserStack',
-        browser: 'safari',
-        browser_version: 'latest',
-        os: 'OS X',
-        os_version: 'Sierra'
-      },
-      bs_edge_win10: {
-        base: 'BrowserStack',
-        browser: 'edge',
+        browser: 'chrome',
         browser_version: 'latest',
         os: 'Windows',
         os_version: '10'
       },
-      bs_chrome_win10: {
+      bs_edge_win10: {
         base: 'BrowserStack',
-        browser: 'chrome',
+        browser: 'edge',
         browser_version: 'latest',
         os: 'Windows',
         os_version: '10'
@@ -40,9 +33,16 @@ module.exports = function(config) {
         browser_version: 'latest',
         os: 'Windows',
         os_version: '10'
-      }
+      },
+      bs_safari_mac: {
+        base: 'BrowserStack',
+        browser: 'safari',
+        browser_version: 'latest',
+        os: 'OS X',
+        os_version: 'Sierra'
+      },
     },
 
-    browsers: ['bs_chrome_win10', 'bs_firefox_win10']
+    browsers: ['bs_chrome_win10', 'bs_edge_win10', 'bs_firefox_win10', 'bs_safari_mac']
   })
 }

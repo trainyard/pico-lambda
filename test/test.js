@@ -26,19 +26,6 @@ function init () {
   }
 }
 
-// describe('integrity', () => {
-//   it('should have everything array.prototype does (except foreach)', () => {
-//     const a = Object
-//       .getOwnPropertyNames(Array.prototype)
-//       .filter(s => !~['forEach', 'constructor'].indexOf(s));
-//     const p = Object.keys(PicoLambda);
-
-//     a.forEach((key) => {
-//       expect(p.includes(key)).toEqual(true, key);
-//     });
-//   });
-// });
-/* eslint-disable no-undef-vars */
 describe('api: concat', () => {
   if (!concat) return;
   it('should add array of items to end of array', () => {

@@ -1,14 +1,14 @@
 {
   "name": "pico-lambda",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "native functional js",
   "main": "dist/pico-lambda.js",
   "browser": "dist/pico-lambda.js",
   "scripts": {
     "clean": "rm -rf dist ; mkdir dist ;",
     "build": "npm run clean ; node build.js src/index.js dist/pico-lambda.js",
-    "test": "semistandard src/index.js test/test.js | snazzy && jasmine test/test.js",
-    "test:remote": "BUILD=$(git rev-parse --short HEAD) karma start karma.conf.js",
+    "test": "jasmine test/test.js",
+    "test:remote": "npm run lint && BUILD=$(git rev-parse --short HEAD) karma start karma.conf.js",
     "lint": "semistandard src/index.js test/test.js --fix | snazzy",
     "watch": "nodemon --exec 'jasmine' test/test.js"
   },
