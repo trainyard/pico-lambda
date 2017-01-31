@@ -32,7 +32,10 @@
       alt="semistandard" />
   </a>
 </div>
-
+<div align="center">
+  Proudly supported by...<br/>
+  <a href="https://www.browserstack.com/"><img src="browserstack.png" width=240 alt="BrowserStack"/></a>
+</div>
 ## why pico-lambda
 - **Pico:** weighs less than 460 bytes gzipped.
 - **Useful:** takes most native JavaScript array methods and makes them immutable, curried, and composable.
@@ -333,7 +336,11 @@ Converts each element of an array into a string based on current locale settings
 
 ```js
 const toYen = toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })
+<<<<<<< HEAD
 toYen(["￥7", 500, 8123, 12]) // => ￥7,500,8,123,12
+=======
+toYen(["￥7", 500, 8123, 12]) // =>
+>>>>>>> 18330e004ae2362cb8f2a784b69f0b47cb4774eb
 ```
 > See [Array.toLocaleString (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString)
 

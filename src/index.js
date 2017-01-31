@@ -2,15 +2,15 @@
 const lambda = Object
   .getOwnPropertyNames(Array.prototype)
   .reduce((lambda, method) => {
-    lambda[method] = (['concat', 'every', 'filter', 'find', 'findIndex', 'includes', 'join', 'map', 'reduce', 'reduceRight', 'slice', 'some'].includes(method))
+    lambda[method] = (~['concat', 'every', 'filter', 'find', 'findIndex', 'includes', 'join', 'map', 'reduce', 'reduceRight', 'slice', 'some'].indexOf(method))
          ? (fn, ...params) => (arr) => arr[method](fn, ...params)
-         : (['sort', 'copyWithin', 'fill'].includes(method))
+         : (~['sort', 'copyWithin', 'fill'].indexOf(method))
             ? (...params) => arr => [...arr][method](...params)
-            : (['toLocaleString', 'indexOf', 'lastIndexOf'].includes(method))
+            : (~['toLocaleString', 'indexOf', 'lastIndexOf'].indexOf(method))
               ? (...params) => arr => arr[method](...params)
-              : (['push', 'splice'].includes(method))
+              : (~['push', 'splice'].indexOf(method))
                 ? (...params) => arr => { var t = [...arr]; t[method](...params); return t; }
-                : (['toString', 'entries', 'keys'].includes(method))
+                : (~['toString', 'entries', 'keys'].indexOf(method))
                   ? arr => arr[method]()
                   : lambda[method];
     return lambda;
