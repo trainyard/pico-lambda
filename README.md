@@ -336,11 +336,7 @@ Converts each element of an array into a string based on current locale settings
 
 ```js
 const toYen = toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })
-<<<<<<< HEAD
 toYen(["￥7", 500, 8123, 12]) // => ￥7,500,8,123,12
-=======
-toYen(["￥7", 500, 8123, 12]) // =>
->>>>>>> 18330e004ae2362cb8f2a784b69f0b47cb4774eb
 ```
 > See [Array.toLocaleString (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString)
 
