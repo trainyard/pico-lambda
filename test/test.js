@@ -2,7 +2,7 @@ const { describe, it, expect, PicoLambda } = init();
 const { compose, concat, copyWithin, entries, every, fill, filter, find,
         findIndex, includes, indexOf, join, keys, lastIndexOf, map, pipe,
         pop, push, reduce, reduceRight, reverse, shift, slice, splice, some,
-        sort, toLocaleString, toString, unshift } = PicoLambda;
+        sort, toLocaleString: tls, toString, unshift } = PicoLambda;
 
 function init () {
   if (typeof window === 'undefined') {
@@ -387,22 +387,22 @@ describe('api: toString', () => {
 });
 
 describe('api: toLocaleString', () => {
-  if (!toLocaleString) return;
+  if (!tls) return;
   it('should match standard array toLocaleString output', () => {
     var testDate = new Date();
     const arr = ['not changing', 1234567890.12, testDate];
-    const result = toLocaleString()(arr);
+    const result = tls()(arr);
     expect(result).toEqual(arr.toLocaleString());
   });
   it('should match standard array toLocaleString output', () => {
     var prices = ['￥7', 500, 8123, 12];
-    const result = toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })(prices);
+    const result = tls('ja-JP', { style: 'currency', currency: 'JPY' })(prices);
     expect(result).toEqual(prices.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }));
   });
   it('should not alter the original array', () => {
     var testDate = new Date();
     const arr = ['not changing', 1234567890.12, testDate];
-    toLocaleString()(arr);
+    tls()(arr);
     expect(arr).toEqual(['not changing', 1234567890.12, testDate]);
   });
 });
