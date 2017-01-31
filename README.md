@@ -333,18 +333,25 @@ Converts each element of an array into a string based on current locale settings
 
 ```js
 const toYen = toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })
-toYen(["￥7", 500, 8123, 12]) // => 
+toYen(["￥7", 500, 8123, 12]) // => ￥7,500,8,123,12
 ```
 > See [Array.toLocaleString (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString)
 
 ### toString :: `[a] -> String`
 Converts each element of an array into a string and appends them together with a comma.
 
+```js
+toString([1, 2, 3, 4, 5]) // => '1,2,3,4,5'
+```
 > See [Array.toString (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString)
 
 ### unshift :: `[a] -> [a]`
 Returns a new copy of an array with the first element removed.
 
+```js
+const addOne = unshift(1)
+addOne([2, 3]) // => [1, 2, 3]
+```
 > See [Array.unshift (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
 
 
