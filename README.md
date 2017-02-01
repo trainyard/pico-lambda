@@ -35,7 +35,7 @@
 ## why pico-lambda
 - **Pico:** weighs less than 460 bytes gzipped.
 - **Useful:** takes most native JavaScript array methods and makes them immutable, curried, and composable.
-- **Familiar:** same names just curried and composable [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)..
+- **Familiar:** same names just curried and composable [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
 - **Degrades Gracefully:** a small set of these functions are not available in every browser. When not available in the browser it will not be available in Pico Lambda.
 > Pico-lambda was made for the ES2015 Javascript Runtime. It has no dependencies.
 
