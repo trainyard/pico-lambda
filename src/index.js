@@ -1,17 +1,23 @@
+const createCurriedFunctions = (method) => ({[method]: (fn, ...params) => (array) => array[method](fn, ...params)})
+const f2 = (method) => ({[method]: (...params) => arr => [...arr][method](...params)})
+const f3 = (method) => ({[method]: (...params) => arr => arr[method](...params)})
+const f4 = (method) => ({[method]: (...params) => arr => { var t = [...arr]; t[method](...params); return t; }})
+const f5 = (method) => ({[method]: (arr) => arr[method]()})
+
 const set1 = ['concat', 'every', 'filter', 'find', 'findIndex', 'includes', 'join', 'map', 'reduce', 'reduceRight', 'slice', 'some']
-  .map((method) => ({[method]: (fn, ...params) => (arr) => arr[method](fn, ...params)}))
+  .map(createCurriedFunctions)
   
 const set2 = ['sort', 'copyWithin', 'fill']
-  .map((method) => ({[method]:(...params) => arr => [...arr][method](...params)}))
+  .map(f2)
 
 const set3 = ['toLocaleString', 'indexOf', 'lastIndexOf']
-  .map((method) => ({[method]:(...params) => arr => arr[method](...params)}))
+  .map(f3)
 
 const set4 = ['push', 'splice']
-  .map((method) => ({[method]:(...params) => arr => { var t = [...arr]; t[method](...params); return t; }}))
+  .map(f4)
 
 const set5 = ['toString', 'entries', 'keys']
-  .map((method) => ({[method]:arr => arr[method]()}))
+  .map(f5)
   
 const functionalArrayMethods = [].concat(set1,set2,set3,set4,set5).reduce((lambdas, func) => Object.assign({}, lambdas, func)); 
 
