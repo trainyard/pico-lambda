@@ -30,5 +30,4 @@ const lambdas = Object.assign({}, functionalArrayMethods, {
   pipe: (...fns) => initialValue => fns.reduce((value, fn) => fn(value), initialValue)
 });
 
-if (typeof window !== 'undefined') window.PicoLambda = lambdas;
-else module.exports = lambdas;
+module.exports = lambdas;
