@@ -1,27 +1,29 @@
+const f1 = (method) => ({[method]: (fn, ...params) => (array) => array[method](fn, ...params)})
+const f2 = (method) => ({[method]: (...params) => arr => [...arr][method](...params)})
+const f3 = (method) => ({[method]: (...params) => arr => { var t = [...arr]; t[method](...params); return t; }})
+const f4 = (method) => ({[method]: (arr) => [...arr][method]()})
 
-const lambda = Object
-  .getOwnPropertyNames(Array.prototype)
-  .reduce((lambda, method) => {
-    lambda[method] = (~['concat', 'every', 'filter', 'find', 'findIndex', 'includes', 'join', 'map', 'reduce', 'reduceRight', 'slice', 'some'].indexOf(method))
-         ? (fn, ...params) => (arr) => arr[method](fn, ...params)
-         : (~['sort', 'copyWithin', 'fill'].indexOf(method))
-            ? (...params) => arr => [...arr][method](...params)
-            : (~['toLocaleString', 'indexOf', 'lastIndexOf'].indexOf(method))
-              ? (...params) => arr => arr[method](...params)
-              : (~['push', 'splice'].indexOf(method))
-                ? (...params) => arr => { var t = [...arr]; t[method](...params); return t; }
-                : (~['toString', 'entries', 'keys'].indexOf(method))
-                  ? arr => arr[method]()
-                  : lambda[method];
-    return lambda;
-  }, {
-    pop: arr => arr.slice(0, -1),
-    shift: arr => arr.slice(1),
-    unshift: params => arr => [params, ...arr],
-    reverse: arr => [...arr].reverse(),
-    compose: (...fns) => initialValue => fns.reduceRight((value, fn) => fn(value), initialValue),
-    pipe: (...fns) => initialValue => fns.reduce((value, fn) => fn(value), initialValue)
-  });
+const set1 = ['concat', 'every', 'filter', 'find', 'findIndex', 'includes', 'join', 'map', 'reduce', 'reduceRight', 'slice', 'some']
+  .map(f1)
 
-if (typeof window !== 'undefined') window.PicoLambda = lambda;
-else module.exports = lambda;
+const set2 = ['sort', 'copyWithin', 'fill', 'toLocaleString', 'indexOf', 'lastIndexOf']
+  .map(f2)
+
+const set4 = ['push', 'splice']
+  .map(f3)
+
+const set5 = ['toString', 'entries', 'keys', 'reverse']
+  .map(f4)
+  
+const functionalArrayMethods = [].concat(set1,set2,set4,set5)
+  .reduce((lambdas, func) => Object.assign({}, lambdas, func)); 
+
+const lambdas = Object.assign({}, functionalArrayMethods, {
+  pop: arr => arr.slice(0, -1),
+  shift: arr => arr.slice(1),
+  unshift: params => arr => [params, ...arr],
+  compose: (...fns) => initialValue => fns.reduceRight((value, fn) => fn(value), initialValue),
+  pipe: (...fns) => initialValue => fns.reduce((value, fn) => fn(value), initialValue)
+});
+
+module.exports = lambdas;
