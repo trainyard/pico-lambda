@@ -24,4 +24,4 @@ const lambda = Object
   });
 
 if (typeof window !== 'undefined') window.PicoLambda = lambda;
-else module.exports = lambda;
+if (module) module.exports = lambda;
