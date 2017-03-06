@@ -1,1 +1,0 @@
-module.exports = { curry: (f,...p) => (f.length <= p.length) ? f(...p) : (...o) => curry(f,...p,...o), compose: (...s) => i => s.reduceRight((v, f) => f(v), i), pipe: (...s) => i => s.reduce((v, f) => f(v), i) } 

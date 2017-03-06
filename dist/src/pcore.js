@@ -1,1 +1,0 @@
-module.exports={curry:(a,...b)=>a.length<=b.length?a(...b):(...c)=>curry(a,...b,...c),compose:(...a)=>(b)=>a.reduceRight((c,d)=>d(c),b),pipe:(...a)=>(b)=>a.reduce((c,d)=>d(c),b)};
