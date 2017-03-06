@@ -3,3 +3,5 @@ node_modules
 scratch.js
 .DS_Store
 .npmrc
+dist
+lib
