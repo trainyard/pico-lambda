@@ -1,4 +1,5 @@
 
+
 const lambda = Object
   .getOwnPropertyNames(Array.prototype)
   .reduce((lambda, method) => {

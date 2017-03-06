@@ -5,9 +5,11 @@
   "main": "dist/pico-lambda.js",
   "browser": "dist/pico-lambda.js",
   "scripts": {
+    "pr": "pr-chief",
     "clean": "rm -rf dist ; mkdir dist ;",
     "build": "npm run clean ; node build.js src/index.js dist/pico-lambda.js",
-    "test": "jasmine test/test.js",
+    "build:modules": "npm run clean ; node build.js src/pcore.js dist/pcore.js; node build.js src/parray.js dist/parray.js; node build.js src/pstring.js dist/pstring.js",
+    "test": "jasmine test/*.test.js",
     "test:remote": "npm run lint && BUILD=$(git rev-parse --short HEAD) karma start karma.conf.js",
     "lint": "semistandard src/index.js test/test.js --fix | snazzy",
     "watch": "nodemon --exec 'jasmine' test/test.js"
@@ -29,6 +31,11 @@
       "email": "contact@mattmcfarland.com",
       "name": "Matt McFarland",
       "url": "https://github.com/mattmcfarland"
+    },
+    {
+      "email": "bobrien@gmail.com",
+      "name": "Brendan O'Brien",
+      "url": "https://github.com/ChanEilFhios"
     }
   ],
   "repository": {
@@ -37,6 +44,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "babili": "0.0.12",
     "jasmine": "2.5.3",
     "jasmine-node": "1.14.5",
     "jasmine-spec-reporter": "3.2.0",

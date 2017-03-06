@@ -20,6 +20,7 @@ var shrinkVariableNames = new Transform({decodeStrings: false});
 shrinkVariableNames._transform = function(chunk, encoding, done) {
   var varMaps = {
     params: 'p',
+    others: 'o',
     method: 'm',
     lambda: 'l',
     arr: 'a',
