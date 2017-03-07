@@ -102,3 +102,45 @@ describe('api: pipe', () => {
     expect(arr).toEqual([0]);
   });
 });
+
+describe('api: curry', () => {
+  function manyParams(a, b, c, d) {
+    return restParam(a, b, c, d)
+  }
+  function restParam(a, b, c, ...d) {
+    return [...arguments].join(', ')
+  }
+  function noParams() {
+    return 'Not one'
+  }
+
+  it('should allow normal function call syntax', () => {
+    const curried = PL.curry(manyParams)
+    expect(curried(1, 2, 3, 4)).toEqual('1, 2, 3, 4')
+  })
+
+  it('should allow separated paramter call syntax', () => {
+    const curried = PL.curry(manyParams)
+    expect(curried(1)(2)(3)(4)).toEqual('1, 2, 3, 4')
+  })
+
+  it('should allow separated paramter groups call syntax', () => {
+    const curried = PL.curry(manyParams)
+    expect(curried(1)(2, 3)(4)).toEqual('1, 2, 3, 4')
+  })
+
+  it('should allow extra parameters in the last group', () => {
+    const curried = PL.curry(restParam)
+    expect(curried(1)(2)(3, 4, 5)).toEqual('1, 2, 3, 4, 5')
+  })
+
+  it('should throw an error if rest params are separate from last group.', () => {
+    const curried = PL.curry(restParam)
+    expect(() => curried(1)(2)(3)(4, 5)).toThrow(new TypeError('curried(...)(...)(...) is not a function'))
+  })
+
+  it('should handle functions that take no parameters', () => {
+    const curried = PL.curry(noParams)
+    expect(curried).toEqual('Not one')
+  })
+})
