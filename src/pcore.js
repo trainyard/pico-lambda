@@ -5,6 +5,5 @@ module.exports = {
   curry,
   compose: compipes('reduceRight'),
   pipe: compipes('reduce'),
-  id: a => a
+  identity: a => a
 }
-

@@ -12,7 +12,7 @@ function init () {
     }));
   }
 
-  const PicoLambda = Object.assign({}, require('../src/parray'), require('../src/pcore.js'));
+  const PicoLambda = Object.assign({}, require('../src/parray'), require('../src/pcore'));
   const { describe, expect, it } = global;
   return { PicoLambda, describe, expect, it };
 }
@@ -142,5 +142,25 @@ describe('api: curry', () => {
   it('should handle functions that take no parameters', () => {
     const curried = PL.curry(noParams)
     expect(curried).toEqual('Not one')
+  })
+})
+
+describe('api: identity', () => {
+  it('should return same value as passed in', () => {
+    expect(PL.identity(1)).toEqual(1)
+    expect(PL.identity("one")).toEqual("one")
+    expect(PL.identity([1])).toEqual([1])
+
+    const testObj = {a:1}
+    expect(PL.identity(testObj)).toEqual(testObj)
+  })
+
+  it('should not change the object', () => {
+    const testObj = {a:1}
+    //Make sure we don't have the same object so that the next comparison is meaningful
+    expect(PL.identity(Object.assign({}, testObj)) === testObj).toEqual(false)
+
+    //Given that we have a new object, make sure it still looks the same as the prototype
+    expect(PL.identity(Object.assign({}, testObj))).toEqual(testObj)
   })
 })
