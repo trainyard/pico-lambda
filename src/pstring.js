@@ -1,7 +1,12 @@
 module.exports = Object
-    .getOwnPropertyNames(String.prototype)
-    .reduce((lambda, method) => {
-      lambda[method] = (~['charAt', 'charCodeAt', 'lastIndexOf', 'localeCompare', 'normalize', 'substr', 'substring', 'toString', 'trim', 'trimLeft', 'trimRight', 'valueOf', 'codePointAt', 'concat', 'endsWith', 'includes', 'indexOf', 'match', 'repeat', 'replace', 'search', 'slice', 'split', 'startsWith', 'toLowerCase', 'toLocaleLowerCase', 'toUpperCase', 'toLocaleUpperCase', 'padLeft', 'padRight'].indexOf(method))
-        ? (...params) => a => a[method](...params)
+  .getOwnPropertyNames(String.prototype)
+  .reduce((lambda, method) => {
+    lambda[method] = (~['charAt', 'charCodeAt', 'lastIndexOf', 'localeCompare', 'normalize', 'substr', 'substring', 'codePointAt', 'concat', 'endsWith', 'includes', 'indexOf', 'match', 'repeat', 'replace', 'search', 'slice', 'split', 'startsWith'].indexOf(method))
+      ? (...params) => a => a[method](...params)
+      : (~['toString', 'trim', 'trimLeft', 'trimRight', 'valueOf', 'toLowerCase', 'toUpperCase', 'toLocaleLowerCase', 'toLocaleUpperCase'].indexOf(method))
+        ? a => a[method]()
         : lambda[method]
-    }, {})
+    return lambda
+  }, {
+    reverse: a => a.split('').reverse().join('')
+  })

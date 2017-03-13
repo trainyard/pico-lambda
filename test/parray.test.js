@@ -36,7 +36,7 @@ describe('api: concat', () => {
   it('should not alter the original array', () => {
     const arrayOne = [3, 2];
     const addOne = PL.concat(1);
-    (addOne(arrayOne));
+    addOne(arrayOne);
     expect(arrayOne).toEqual([3, 2]);
   });
 });
