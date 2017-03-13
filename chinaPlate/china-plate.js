@@ -7,7 +7,7 @@ const { curry, pipe } = require('../src/pcore')
 
 const logData = (param) => {console.log(param); return param}
 
-const buildUserSelection = selectFn => user => ({name: user.name, value: () => selectFn(user)})
+const buildUserSelection = curry((selectFn, user) => ({name: user.name, value: () => selectFn(user)}))
 const buildUserPrompt = curry((message, extraOptions, userFunction, users) =>
   ({
     type: "list",
