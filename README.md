@@ -4,10 +4,10 @@
   λ
 </div>
 <div align="center">
-  <strong>Arrays the functional way</strong>
+  <strong>Arrays, Strings and things the functional way</strong>
 </div>
 <div align="center">
-  A <code>460b</code> functional library based on native array methods
+  A <code>640b</code> functional library based on native methods
 </div>
 
 <div align="center">
@@ -33,10 +33,11 @@
 </div>
 
 ## why pico-lambda
-- **Pico:** weighs less than 460 bytes gzipped.
-- **Useful:** takes most native JavaScript array methods and makes them *immutable*, *curried*, and *composable*.
-- **Familiar:** same names just curried and composable [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
-- **Degrades Gracefully:** a small set of these functions are not available in every browser. When not available in the browser it will not be available in Pico Lambda.
+- **Pico:** weighs less than 640 bytes when minified and gzipped.
+- **Useful:** takes most native JavaScript array and string methods and makes them *immutable*, *curried*, and *composable*.
+- **Functional:** Curry, compose and pipe, Oh My!
+- **Familiar:** same names just curried and composable. See [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) and [JavaScript String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+- **Degrades Gracefully:** a small set of these functions are not available in every browser/environment. When not available in the browser it will not be available in Pico Lambda.
 
 > Pico-lambda was made for the ES2015 Javascript Runtime. It has __no dependencies__.
 
@@ -47,13 +48,16 @@
 After installing via `npm install`:
 
 ```js
+const {parray, pcore} = require('pico-lambda')
 const {
   concat,
   filter,
   map,
   reduce,
+} = parray
+const {
   compose
-} = require('pico-lambda')
+} = pcore
 
 //concat
 const arrayOne = [1, 2, 3];
@@ -72,7 +76,7 @@ compose(
 * * *
 
 ## functions
-Here be a table showing compatibility for each of the functions available.
+This table shows compatibility for each of the functions available by browser. *Currently only array functions are listed. String will be added soon.*
 If you wish to have full compatibility you can use a transpiler like babel.
 
 <details>
@@ -369,7 +373,40 @@ If you wish to have full compatibility you can use a transpiler like babel.
 </table>
 </details>
 
-## API
+# API
+
+The api is broken up into three sections:
+* pcore - Basic functional capabilities like curry and compose
+* parray - The standard Array.prototype methods setup for functional use
+* pstring - The standard String.prototype methods setup for functional use
+
+One note, parray and pstring have some overlapping function names:
+ * length
+ * toString
+ * slice
+ * indexOf
+ * lastIndexOf
+ * includes
+ * concat
+
+ Be aware of this when importing these into your global namespace.
+
+
+---
+## pcore
+---
+### pipe :: `((a -> b), (b -> c), ..., (e -> f)) -> a -> f`
+Takes an initial value that is passed to the first function in the parameter list.
+The return value of each subsequent function is passed to the following function.
+The return value of the last function is returned from pipe.
+
+```js
+const arr = [1, 2, 3, 4, 5]
+pipe(
+  unshift(0),        // (a -> b)
+  concat([6, 7, 8])  // (b -> c)
+)(arr) // => [0, 1, 2, 3, 4, 5, 6, 7, 8]
+```
 ### compose :: `((e -> f), ..., (b -> c), (a -> b)) -> a -> f`
 
 Evaluates the provided functions, right to left, passing the return value
@@ -384,6 +421,62 @@ compose(
   map(x => x + 1)   // (a -> b)
 )([0]) // (-> a) => 3
 ```
+
+### curry :: `(fn) -> fn`
+Takes a function and curries the arguments.
+
+Take note that rest parameters are only partially supported using curry. JS only reports expected parameters, optional and rest parameters are not reported. As a result, there is no way to determine when to expect them. What this means, in practice, is that you can pass rest and/or optional parameters along with the last required param, but you cannot pass them on their own in a new set of parens. See the example below for an illustration of this.
+
+
+```js
+function log4Things(a, b, c, d) {
+  console.log(a, b, c, d)
+}
+
+const curriedLog = curry(log4Things)
+
+curriedLog(1, 2, 3, 4) //=> Outputs: 1 2 3 4
+curriedLog(1)(2)(3)(4) //=> Outputs: 1 2 3 4
+curriedLog(1)(2, 3)(4) //=> Outputs: 1 2 3 4
+curriedLog(1)(2)(3)(4) //=> Outputs: 1 2 3 4
+curriedLog(1, 2)(3, 4) //=> Outputs: 1 2 3 4
+curriedLog(1, 2, 3)(4) //=> Outputs: 1 2 3 4
+//You get the idea.....
+
+const partialLog = curriedLog(1, 2, 3)
+partialLog(4)          //=> Outputs: 1 2 3 4
+partialLog(5)          //=> Outputs: 1 2 3 5
+
+//Using Rest parameters
+function log3OrMoreThings(a, b, c, ...d) {
+  console.log(a, b, c, ...d)
+}
+const curriedLogMore = curry(log3OrMoreThings)
+
+curriedLogMore(1, 2, 3) //=> Outputs: 1 2 3
+curriedLogMore(1, 2, 3, 4) //=> Outputs: 1 2 3 4
+curriedLogMore(1, 2)(3) //=> Outputs: 1 2 3
+curriedLogMore(1, 2)(3, 4) //=> Outputs: 1 2 3 4
+//However, the following all result in an error
+curriedLogMore(1)(2)(3)(4) //Throws: TypeError('curriedLogMore(...)(...)(...) is not a function')
+curriedLogMore(1)(2, 3)(4) //Throws: TypeError('curriedLogMore(...)(...)(...) is not a function')
+curriedLogMore(1)(2)(3)(4) //Throws: TypeError('curriedLogMore(...)(...)(...) is not a function')
+curriedLogMore(1, 2, 3)(4) //Throws: TypeError('curriedLogMore(...)(...)(...) is not a function')
+//This is because the curry function calls the original function after the third param and the result is then called as a function with the last grouping, '(4)' in this case
+
+
+```
+### identity :: `a -> a`
+Takes an argument and returns that arugment. This can be quite useful when composing many functions together.
+
+```js
+console.log(identity("hi")) //Outputs: hi
+
+```
+
+---
+## parray
+---
 ### concat :: `[a] -> ([a], ..., [a]) -> [a]`
 Concatenates two or more arrays
 
@@ -525,20 +618,6 @@ map(x => x * 2)([1, 2, 3]) // => 2, 4, 6
 ```
 > See [Array.map (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
-### pipe :: `((a -> b), (b -> c), ..., (e -> f)) -> a -> f`
-Takes an initial value that is passed to the first function in the parameter list.
-The return value of each subsequent function is passed to the following function.
-The return value of the last function is returned from pipe.
-
-```js
-const arr = [1, 2, 3, 4, 5]
-pipe(
-  unshift(0),        // (a -> b)
-  concat([6, 7, 8])  // (b -> c)
-)(arr) // => [0, 1, 2, 3, 4, 5, 6, 7, 8]
-```
-> See [Array.pipe (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pipe)
-
 ### pop :: `[a] -> [a]`
 Returns a new array without the last item
 
@@ -643,8 +722,8 @@ toString([1, 2, 3, 4, 5]) // => '1,2,3,4,5'
 ```
 > See [Array.toString (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString)
 
-### unshift :: `[a] -> [a]`
-Returns a new copy of an array with the first element removed.
+### unshift :: `a -> [a] -> [a]`
+Returns a new copy of an array with the given element added to the front.
 
 ```js
 const addOne = unshift(1)
@@ -652,9 +731,228 @@ addOne([2, 3]) // => [1, 2, 3]
 ```
 > See [Array.unshift (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
 
-
 ## Where are ...?
 - `length` - This is a property, not a method, so it doesn't really belong here.
 - `forEach` - This is inherently side-effect-y, it adds nothing that can't be done with `filter`, `map` and `reduce`.
 
 If you don't agree with anything above that's great! Just log an issue so we can discuss.
+
+---
+## pstring
+---
+### charAt :: `Int -> String -> String`
+Returns the character at the given position in the string.
+
+```js
+charAt(2)("123")) //=> "3"
+```
+> See [String.charAt (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt)
+### charCodeAt :: `Int -> String -> Int`
+Returns the character code at the given position in the string.
+
+```js
+charAt(2)("123")) //=> 51
+
+```
+> See [String.charCodeAt (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt)
+### codePointAt :: `Int -> String -> Int`
+Returns the unicode code point at the given index.
+
+```js
+codePointAt(0)("\uD800\uDC00")) //=> 65536
+```
+> See [String.codePointAt (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt)
+### concat :: `(String, ...String) -> String -> String`
+Returns a new string combining the given strings. Multiple strings can be passed to the initial call.
+
+```js
+const stringOne = "123"
+const addTwo = concat("45", "67")
+const result = addTwo(stringOne) //result = "1234567"
+```
+> See [String.concat (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat)
+### endsWith :: `String -> String -> Boolean` | `(String, Int) -> String -> String`
+Returns true if the second string ends with the characters in the first. If the integer parameter is passed, the second string is considered to be only that long (or the length of the second string itself whichever is shorter)
+
+```js
+endsWith("bc")("abc")    //=> true
+endsWith("bc", 2)("abc") //=> false
+endsWith("bc")("abcd")   //=> false
+```
+> See [String.endsWidth (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWidth)
+### includes :: `String -> String -> Boolean` | `(String, Int) -> String -> Boolean`
+Returns true if the characters from the first string appear together as a substring in the second. If the integer is provided it indicates where to start searching in the second string.
+
+```js
+includes("not to be,")("To be, or not to be, that is the question.")  //=> true
+includes("not to be,", 20)("To be, or not to be, that is the question.")  //=> false
+includes("nonexistent")("To be, or not to be, that is the question.") //=> false
+```
+> See [String.includes (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes)
+### indexOf :: `String -> String -> Int` | `(String, Int) -> String -> Int`
+Returns the first index where the second string appears as a substring of the first. Optionally you can provide a starting index and the search will start there. If the first string is not found it returns -1
+
+```js
+indexOf("a")("abc")) //=> 0
+indexOf("b")("abc")) //=> 1
+indexOf("c")("abc")) //=> 2
+indexOf("z")("abc")) //=> -1
+```
+> See [String.indexOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf)
+### lastIndexOf :: `String -> String -> Int` | `(String, Int) -> String -> Int`
+Works like index of but starting at the end and working forward.
+
+```js
+lastIndexOf("a")("abc")) //=> 0
+lastIndexOf("b")("abc")) //=> 1
+lastIndexOf("c")("abc")) //=> 2
+lastIndexOf("z")("abc")) //=> -1
+```
+> See [String.lastIndexOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf)
+### localeCompare :: `String -> String -> Int` | `(String, String) -> String -> Int` | `(String, String, Object) -> String -> Int`
+Compares two strings taking the locale into account. The return value will be negative if the second string comes before the first. Positive if it comes later. And zero if they are equal. The additional, optional parameters allow a locale and other options to be specified.
+
+```js
+localeCompare("b")("a"))                                //=> <0
+localeCompare("a")("b"))                                //=> >0
+localeCompare("a")("a"))                                //=> 0
+localeCompare('a', 'de', { sensitivity: 'base' })('ä')) //=> 0
+```
+> See [String.localeCompare (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare)
+### match :: `Regexp -> String -> [String]`
+Returns an array of strings for the value matched by the regular expression as well as all matching groups defined therein.
+
+```js
+const str = 'For more information, see Chapter 3.4.5.1'
+const re = /see (chapter \d+(\.\d)*)/i
+match(re)(str)  //=> ["see Chapter 3.4.5.1", "Chapter 3.4.5.1", ".1"]
+```
+> See [String.match (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match)
+### normalize :: `String -> String`
+Returns the Unicode Normalization Form of a string.
+
+```js
+normalize('NFKC')('\u1E9B\u0323') //=> '\u1E69'
+```
+> See [String.normalize (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize)
+### repeat :: `Int -> String -> String`
+Returns string comprised of the given number of repeats of the given string.
+
+```js
+repeat(2)('abc')) //=> 'abcabc'
+```
+> See [String.repeat (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat)
+### replace :: `(Regexp, String) -> String -> String`
+Replaces all locations in the second string that match the given regular expression with the value in the first string. Back references in the first string will be filled appropriately.
+
+```js
+replace(/xmas/i, 'Christmas')('Twas the night before Xmas...')) //=> 'Twas the night before Christmas...'
+```
+> See [String.replace (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
+### search :: `Regexp -> String -> String`
+Returns the first position where given regular expression matches in the second string. If it doesn't match, -1 is returned.
+
+```js
+search(/xmas/i)('Twas the night before Xmas...')) //=> 22
+```
+> See [String.search (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search)
+### slice :: `Int -> String -> String` | `(Int, Int) -> String -> String`
+Returns a substring of the second string defined by the given index and optional end index. Either may be negative to count from the end of the string.
+
+```js
+slice(4, -2)('Twas the night before Xmas...')) //=> ' the night before Xmas.'
+```
+> See [String.slice (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice)
+### split :: `String -> String -> [String]` | `(String, Int) -> String -> [String]`
+Splits a string into an array of substrings that are separated by the first string given. If the integer parameter is provided the split will stop at the given limit.
+
+```js
+split(',')("1,2"))         //=> ['1', '2']
+split(',', 2)("1,2,3,4"))  //=> ['1', '2']
+```
+> See [String.split (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
+### startsWith :: `String -> String -> Boolean` | `(String, Int) -> String -> Boolean`
+Returns true if the second string starts with the characters in the first. If the integer parameter is passed, the second string is considered to start at that position
+
+```js
+startsWith("ab")("abc"))   //=> true
+startsWith("bc")("abcd"))  //=> false
+```
+> See [String.startsWith (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith)
+### substr :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.substr (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr)
+### substring :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.substring (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring)
+### toLocaleLowerCase :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.toLocaleLowerCase (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase)
+### toLocaleUpperCase :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.toLocaleUpperCase (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase)
+### toLowerCase :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.toLowerCase (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase)
+### toString :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.toString (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toString)
+### toUpperCase :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.toUpperCase (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase)
+### trim :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.trim (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim)
+### trimLeft :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.trimLeft (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimLeft)
+### trimRight :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.trimRight (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimRight)
+### valueOf :: `String -> String`
+Returns the primitive value of a string.
+
+```js
+
+```
+> See [String.valueOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf)

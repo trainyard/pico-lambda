@@ -46,8 +46,14 @@ describe('api: concat', () => {
   it('should add string to end of string', () => {
     const stringOne = "123"
     const addTwo = PL.concat("45")
-    const result = (addTwo(stringOne))
+    const result = addTwo(stringOne)
     expect(result).toEqual("12345")
+  })
+  it('should add multiple strings to end of string', () => {
+    const stringOne = "123"
+    const addTwo = PL.concat("45", "67")
+    const result = addTwo(stringOne)
+    expect(result).toEqual("1234567")
   })
 
   it('should add single character to end of string', () => {
@@ -58,7 +64,7 @@ describe('api: concat', () => {
   })
 })
 
-describe('api: endsWidth', () => {
+describe('api: endsWith', () => {
   if (!PL.endsWidth) return
   it('should return true if the final param ends with the string in the first position', () => {
     expect(PL.endsWith("bc")("abc")).toEqual(true)

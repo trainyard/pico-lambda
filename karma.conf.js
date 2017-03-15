@@ -9,7 +9,7 @@ module.exports = function(config) {
     logLevel: global.LOG_INFO || 'LOG_INFO',
     singleRun: true,
     basePath: './',
-    files: ['src/index.js', 'test/test.js'],
+    files: ['src/index.js', 'test/*.js'],
     frameworks: ['jasmine'],
     // define browsers
     customLaunchers: {
