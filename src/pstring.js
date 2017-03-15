@@ -7,6 +7,4 @@ module.exports = Object
         ? a => a[method]()
         : lambda[method]
     return lambda
-  }, {
-    reverse: a => a.split('').reverse().join('')
-  })
+  }, {})

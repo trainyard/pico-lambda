@@ -12,7 +12,9 @@ function init () {
     }));
   }
 
-  const PicoLambda = Object.assign({}, require('../src/parray'), require('../src/pcore'));
+  const tempLambda = require('../src/index.js')
+
+  const PicoLambda = Object.assign({}, tempLambda.pcore, tempLambda.parray);
   const { describe, expect, it } = global;
   return { PicoLambda, describe, expect, it };
 }

@@ -2,13 +2,11 @@
   "name": "pico-lambda",
   "version": "1.0.4",
   "description": "native functional js",
-  "main": "dist/pico-lambda.js",
-  "browser": "dist/pico-lambda.js",
+  "main": "src/index.js",
   "scripts": {
-    "pr": "pr-chief",
     "clean": "rm -rf dist ; mkdir dist ;",
-    "build": "npm run clean ; node build.js src/index.js dist/pico-lambda.js",
-    "build:modules": "npm run clean ; node build.js src/pcore.js dist/pcore.js; node build.js src/parray.js dist/parray.js; node build.js src/pstring.js dist/pstring.js",
+    "concat": "",
+    "build": "npm run clean ; babili src -d dist",
     "test": "jasmine test/*.test.js",
     "test:remote": "npm run lint && BUILD=$(git rev-parse --short HEAD) karma start karma.conf.js",
     "lint": "semistandard src/index.js test/test.js --fix | snazzy",
@@ -36,6 +34,11 @@
       "email": "bobrien@gmail.com",
       "name": "Brendan O'Brien",
       "url": "https://github.com/ChanEilFhios"
+    },
+    {
+      "email": "sherman.adelson@gmail.com",
+      "name": "Sherman Adelson",
+      "url": "https://github.com/mnebuerquo"
     }
   ],
   "repository": {
@@ -56,5 +59,8 @@
     "semistandard": "^9.2.1",
     "snazzy": "6.0.0",
     "strip-comments": "0.4.4"
-  }
+  },
+  "files": [
+    "src"
+  ]
 }

@@ -12,7 +12,7 @@ function init() {
     }))
   }
 
-  const PicoLambda = require('../src/pstring')
+  const PicoLambda = require('../src/index').pstring
   const { describe, expect, it } = global
   return { PicoLambda, describe, expect, it }
 }

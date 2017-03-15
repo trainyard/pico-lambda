@@ -12,7 +12,7 @@ function init () {
     }));
   }
 
-  const PicoLambda = require('../src/parray.js');
+  const PicoLambda = require('../src/index.js').parray;
   const { describe, expect, it } = global;
   return { PicoLambda, describe, expect, it };
 }
