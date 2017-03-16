@@ -860,37 +860,39 @@ search(/xmas/i)('Twas the night before Xmas...')) //=> 22
 Returns a substring of the second string defined by the given index and optional end index. Either may be negative to count from the end of the string.
 
 ```js
-slice(4, -2)('Twas the night before Xmas...')) //=> ' the night before Xmas.'
+slice(4, -2)('Twas the night before Xmas...') //=> ' the night before Xmas.'
 ```
 > See [String.slice (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice)
 ### split :: `String -> String -> [String]` | `(String, Int) -> String -> [String]`
 Splits a string into an array of substrings that are separated by the first string given. If the integer parameter is provided the split will stop at the given limit.
 
 ```js
-split(',')("1,2"))         //=> ['1', '2']
-split(',', 2)("1,2,3,4"))  //=> ['1', '2']
+split(',')("1,2")         //=> ['1', '2']
+split(',', 2)("1,2,3,4")  //=> ['1', '2']
 ```
 > See [String.split (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
 ### startsWith :: `String -> String -> Boolean` | `(String, Int) -> String -> Boolean`
 Returns true if the second string starts with the characters in the first. If the integer parameter is passed, the second string is considered to start at that position
 
 ```js
-startsWith("ab")("abc"))   //=> true
-startsWith("bc")("abcd"))  //=> false
+startsWith("ab")("abc")    //=> true
+startsWith("bc")("abcd")   //=> false
 ```
 > See [String.startsWith (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith)
-### substr :: `String -> String`
-Returns the primitive value of a string.
+### substr :: `Int -> String` | `(Int, Int) -> String`
+Returns the characters in a string beginning at the specified location through the specified number of characters.
 
 ```js
-
+substr(2)("abcde")     //=> 'cde'
+substr(2, 2)("abcde")  //=> 'cd'
 ```
 > See [String.substr (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr)
-### substring :: `String -> String`
-Returns the primitive value of a string.
+### substring :: `Int -> String` | `(Int, Int) -> String`
+Returns a subset of a string between one index and another, or through the end of the string.
 
 ```js
-
+substring(2)("abcde")    //=> 'cde'
+substring(2, 4)("abcde") //=> 'cd'
 ```
 > See [String.substring (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring)
 ### toLocaleLowerCase :: `String -> String`
@@ -901,58 +903,58 @@ Returns the primitive value of a string.
 ```
 > See [String.toLocaleLowerCase (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase)
 ### toLocaleUpperCase :: `String -> String`
-Returns the primitive value of a string.
+Returns the calling string value converted to lower case, according to any locale-specific case mappings.
 
 ```js
-
+toLocaleLowerCase("ABC") //=> 'abc'
 ```
 > See [String.toLocaleUpperCase (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase)
 ### toLowerCase :: `String -> String`
 Returns the primitive value of a string.
 
 ```js
-
+toLocaleLowerCase("ABC") //=> 'abc'
 ```
 > See [String.toLowerCase (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase)
 ### toString :: `String -> String`
-Returns the primitive value of a string.
+Returns the calling string value converted to upper case, according to any locale-specific case mappings.
 
 ```js
-
+toLocaleUpperCase("abc") //=> 'ABC'
 ```
 > See [String.toString (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toString)
 ### toUpperCase :: `String -> String`
-Returns the primitive value of a string.
+Returns the calling string value converted to upper case.
 
 ```js
-
+toUpperCase("abc") //=> 'ABC'
 ```
 > See [String.toUpperCase (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase)
 ### trim :: `String -> String`
-Returns the primitive value of a string.
+ Removes whitespace from both ends of a string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).
 
 ```js
-
+trim(" abc ") //=> 'abc'
 ```
 > See [String.trim (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim)
 ### trimLeft :: `String -> String`
-Returns the primitive value of a string.
+Removes whitespace from the left end of a string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).
 
 ```js
-
+trimLeft(" abc ") //=> 'abc '
 ```
 > See [String.trimLeft (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimLeft)
 ### trimRight :: `String -> String`
-Returns the primitive value of a string.
+Removes whitespace from the left end of a string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).
 
 ```js
-
+trimRight(" abc ") //=> ' abc'
 ```
 > See [String.trimRight (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimRight)
 ### valueOf :: `String -> String`
 Returns the primitive value of a string.
 
 ```js
-
+valueOf("abc") //=> 'abc'
 ```
 > See [String.valueOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf)
