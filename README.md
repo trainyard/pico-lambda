@@ -31,6 +31,11 @@
   Proudly supported by...<br/>
   <a href="https://www.browserstack.com/"><img src="browserstack.png" width=240 alt="BrowserStack"/></a>
 </div>
+<div align="center">
+  <img src="pico-lambda-stats.png" />
+</div>
+
+
 
 ## why pico-lambda
 - **Pico:** weighs less than 640 bytes when minified and gzipped.
