@@ -2,7 +2,7 @@ const ctx = module
             ? module.exports
             : (typeof window !== 'undefined')
               ? window
-              : {}
+              : {};
 
 const c = (fn, ...params) => fn.length <= params.length ? fn(...params) : (...others) => c(fn, ...params, ...others);
 const cp = method => (...fns) => initialValue => fns[method]((value, fn) => fn(value), initialValue);
