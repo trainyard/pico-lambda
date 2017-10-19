@@ -1,6 +1,11 @@
 const { parray } = init();
 
 function init () {
+  if (typeof window !== 'undefined') {
+    return {
+      parray: window.PicoLambda.parray,
+    }
+  }
   if (typeof window === 'undefined') {
     const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 

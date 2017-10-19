@@ -2,6 +2,11 @@ const { pl } = init();
 
 
 function init () {
+  if (typeof window !== 'undefined') {
+    return {
+      pl: window.PicoLambda,
+    }
+  }
   if (typeof window === 'undefined') {
     const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
@@ -14,9 +19,6 @@ function init () {
     return {
       pl: require('../src/index.js'),
     }
-  }
-  return {
-    pl: window.PicoLambda,
   }
 }
 

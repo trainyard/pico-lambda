@@ -1,6 +1,11 @@
 const { pstring } = init()
 
 function init () {
+  if (typeof window !== 'undefined') {
+    return {
+      pstring: window.PicoLambda.pstring,
+    }
+  }
   if (typeof window === 'undefined') {
     const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
@@ -13,9 +18,6 @@ function init () {
     return {
       pstring: require('../src/index.js').pstring,
     }
-  }
-  return {
-    pstring: window.PicoLambda.pstring,
   }
 }
 
