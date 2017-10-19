@@ -141,7 +141,7 @@ describe('api: curry', () => {
 
   it('should throw an error if rest params are separate from last group.', () => {
     const curried = pl.pcore.curry(restParam)
-    expect(() => curried(1)(2)(3)(4, 5)).toThrow(new TypeError('curried(...)(...)(...) is not a function'))
+    expect(() => curried(1)(2)(3)(4, 5)).toThrow()
   })
 
   it('should handle functions that take no parameters', () => {
