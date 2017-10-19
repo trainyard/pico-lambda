@@ -19,9 +19,6 @@ function init () {
       parray: require('../src/index.js').parray,
     }
   }
-  return {
-    parray: window.PicoLambda.parray,
-  }
 }
 
 describe('api: concat', () => {

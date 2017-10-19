@@ -8,7 +8,7 @@
     "build": "npm run clean ; browserify -e src/index.js -o dist/index.js -t [ babelify --presets [ es2015 ] ] -s PicoLambda",
     "test": "jasmine test/*.test.js",
     "test:chrome": "karma start karma.local.conf.js --browsers Chrome",
-    "test:remote": "npm run lint && BUILD=$(git rev-parse --short HEAD) karma start karma.conf.js",
+    "test:remote": "npm run build ; npm run lint && BUILD=$(git rev-parse --short HEAD) karma start karma.conf.js",
     "lint": "semistandard src/index.js test/test.js --fix | snazzy",
     "watch": "nodemon --exec 'jasmine' test/test.js"
   },
@@ -49,7 +49,6 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "babelify": "^7.3.0",
-    "babili": "0.0.12",
     "install": "^0.10.1",
     "jasmine": "2.5.3",
     "jasmine-node": "1.14.5",
