@@ -31,20 +31,17 @@
   Proudly supported by...<br/>
   <a href="https://www.browserstack.com/"><img src="browserstack.png" width=240 alt="BrowserStack"/></a>
 </div>
-<div align="center">
-  <img src="pico-lambda-stats.png" />
-</div>
-
-
+## Rationale
+We needed to optimize the bundle size of our projects.  Since we were already using ES6 and transpiling it, we decided to create a functional library that takes the native Array and String APIs used by major browsers and Nodejs, and make them *functional* - so we can `curry`, `compose`, and `pipe` them.  If you are either already transpiling es6 in your project, or you are not supporting older browsers, you should use this instead of `ramda` or `lodash/fp`.  If you need to support older browsers, are not transpiling es6, or using es5 - you should use `lodash/fp` or `ramda`
 
 ## why pico-lambda
-- **Pico:** weighs less than 640 bytes when minified and gzipped.
+- **Pico:** weighs less than 700 bytes when minified and gzipped.
 - **Useful:** takes most native JavaScript array and string methods and makes them *immutable*, *curried*, and *composable*.
 - **Functional:** Curry, compose and pipe, Oh My!
 - **Familiar:** same names just curried and composable. See [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) and [JavaScript String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
 - **Degrades Gracefully:** a small set of these functions are not available in every browser/environment. When not available in the browser it will not be available in Pico Lambda.
 
-> Pico-lambda was made for the ES2015 Javascript Runtime. It has __no dependencies__.
+> Pico-lambda was made for the ES6 Javascript Runtime. It has __no dependencies__.
 
 * * *
 
