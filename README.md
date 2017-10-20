@@ -36,7 +36,7 @@
 
 We needed to optimize the bundle size of our projects.  Since we were already using ES6 and transpiling it, we decided to create a functional library that takes the native Array and String APIs used by major browsers and Nodejs, and make them *functional* - so we can `curry`, `compose`, and `pipe` them.  If you are either already transpiling es6 in your project, or you are not supporting older browsers, you should use this instead of `ramda` or `lodash/fp`.  If you need to support older browsers, are not transpiling es6, or using es5 - you should use `lodash/fp` or `ramda`
 
-## why pico-lambda
+## Features
 - **Pico:** weighs less than 700 bytes when minified and gzipped.
 - **Useful:** takes most native JavaScript array and string methods and makes them *immutable*, *curried*, and *composable*.
 - **Functional:** Curry, compose and pipe, Oh My!
