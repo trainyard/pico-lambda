@@ -507,7 +507,7 @@ Return an iterator over key, value pairs from the array.
 
 ```js
 const iterator = entries([1, 2, 3, 4, 5])
-iterator.next()) // => { value: [0, 1], done: false }
+iterator.next() // => { value: [0, 1], done: false }
 ```
 > See [Array.entries (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries)
 
@@ -797,30 +797,30 @@ includes("nonexistent")("To be, or not to be, that is the question.") //=> false
 Returns the first index where the second string appears as a substring of the first. Optionally you can provide a starting index and the search will start there. If the first string is not found it returns -1
 
 ```js
-indexOf("a")("abc")) //=> 0
-indexOf("b")("abc")) //=> 1
-indexOf("c")("abc")) //=> 2
-indexOf("z")("abc")) //=> -1
+indexOf("a")("abc") //=> 0
+indexOf("b")("abc") //=> 1
+indexOf("c")("abc") //=> 2
+indexOf("z")("abc") //=> -1
 ```
 > See [String.indexOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf)
 ### lastIndexOf :: `String -> String -> Int` | `(String, Int) -> String -> Int`
 Works like index of but starting at the end and working forward.
 
 ```js
-lastIndexOf("a")("abc")) //=> 0
-lastIndexOf("b")("abc")) //=> 1
-lastIndexOf("c")("abc")) //=> 2
-lastIndexOf("z")("abc")) //=> -1
+lastIndexOf("a")("abc") //=> 0
+lastIndexOf("b")("abc") //=> 1
+lastIndexOf("c")("abc") //=> 2
+lastIndexOf("z")("abc") //=> -1
 ```
 > See [String.lastIndexOf (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf)
 ### localeCompare :: `String -> String -> Int` | `(String, String) -> String -> Int` | `(String, String, Object) -> String -> Int`
 Compares two strings taking the locale into account. The return value will be negative if the second string comes before the first. Positive if it comes later. And zero if they are equal. The additional, optional parameters allow a locale and other options to be specified.
 
 ```js
-localeCompare("b")("a"))                                //=> <0
-localeCompare("a")("b"))                                //=> >0
-localeCompare("a")("a"))                                //=> 0
-localeCompare('a', 'de', { sensitivity: 'base' })('ä')) //=> 0
+localeCompare("b")("a")                                //=> <0
+localeCompare("a")("b")                                //=> >0
+localeCompare("a")("a")                                //=> 0
+localeCompare('a', 'de', { sensitivity: 'base' })('ä') //=> 0
 ```
 > See [String.localeCompare (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare)
 ### match :: `Regexp -> String -> [String]`
@@ -843,7 +843,7 @@ normalize('NFKC')('\u1E9B\u0323') //=> '\u1E69'
 Returns string comprised of the given number of repeats of the given string.
 
 ```js
-repeat(2)('abc')) //=> 'abcabc'
+repeat(2)('abc') //=> 'abcabc'
 ```
 > See [String.repeat (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat)
 ### replace :: `(Regexp, String) -> String -> String`
